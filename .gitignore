@@ -1,0 +1,11 @@
+wp-config.php
+/misc
+# /wp-content/themes/idignify/js/hashgrid.js
+# /wp-content/themes/idignify/css/hashgrid.css
+# /wp-content/themes/idignify/included
+/wp-content/uploads/_wpremote_backups/
+/wp-content/w3tc/
+/wp-content/backup-db/
+.htaccess
+sitemap.xml
+sitemap.xml.gz
