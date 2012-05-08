@@ -1,5 +1,5 @@
 
-@import url('less.less'); /* LESS colors, font families, mixins and variables */
+/*@import url('less.less'); /* LESS colors, font families, mixins and variables */
 article, aside, figure, footer, header, hgroup, 
 menu, nav, section { display: block; }
 html { overflow-y: scroll; } /* force scrollbar */
@@ -11,7 +11,9 @@ html, body { height: 100%; }
 /*.......................................................the usual*/
 body
 {
-	
+	background-color: #333;
+	color: #fff;
+	padding-top: 160px;
 }
 
 h1
@@ -76,100 +78,12 @@ header
 }
 
 /*.......................................................the navigation*/
-nav
+.navbar
 {
-	background: #ddd;
-	display: block;
-	float: left;
-	margin: 0 auto;
-	width: 940px;
-	
-	.menu-header, div.menu
+	.brand
 	{
-		font-size: 13px;
-		margin-left: 12px;
-		width: 928px;
-		
-		ul
-		{
-			list-style: none;
-			margin: 0;
-			padding-left: 0;
-		}
-		
-		li
-		{
-			float: left;
-			position: relative;
-		}
+		padding: 0 20px 12px 20px;
 	}
-	
-	a
-	{
-		color: #666;
-		display: block;
-		line-height: 38px;
-		padding: 0 10px;
-		text-decoration: none;
-	}
-	
-	ul ul
-	{
-		display: none;
-		position: absolute;
-		top: 38px;
-		left: 0;
-		float: left;
-		width: 180px;
-		z-index: 99999;
-		
-		li
-		{
-			min-width: 180px;
-		}
-		
-		ul
-		{
-			left: 100%;
-			top: 0;
-		}
-		
-		a
-		{
-			background: #333;
-			line-height: 1em;
-			padding: 10px;
-			width: 160px;
-			height: auto;
-		}
-	}
-	
-	li:hover > a, ul ul :hover > a
-	{
-		background: #333;
-		color: #fff;
-	}
-	
-	ul li:hover > ul
-	{
-		display: block;
-	}
-	
-	ul li.current_page_item > a,
-	ul li.current-menu-ancestor > a,
-	ul li.current-menu-item > a,
-	ul li.current-menu-parent > a 
-	{
-		color: #000;
-	}
-}
-
-* html nav ul li.current_page_item a,
-* html nav ul li.current-menu-ancestor a,
-* html nav ul li.current-menu-item a,
-* html nav ul li.current-menu-parent a,
-* html nav ul li a:hover {
-	color: #000;
 }
 
 /*.......................................................the sidebar*/
