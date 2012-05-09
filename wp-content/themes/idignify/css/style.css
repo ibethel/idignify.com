@@ -31,11 +31,15 @@ body {
 .container {
   padding: 0 20px;
 }
+.os-sb {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /*.......................................................the usual*/
 body {
-  background-color: #333;
+  background-color: #ccc;
   color: #fff;
-  padding-top: 160px;
 }
 /*.......................................................the header*/
 header {
@@ -45,6 +49,28 @@ header {
 /*.......................................................the navigation*/
 .navbar .brand {
   padding: 0 20px 12px 20px;
+}
+.navbar .nav {
+  float: right;
+  background-color: #333;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+  background: none;
+}
+.navbar .nav > li > a {
+  padding: 3px 15px 3px;
+  font-size: 14px;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 /*.......................................................the sidebar*/
 /*.......................................................the footer*/

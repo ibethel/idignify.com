@@ -8,12 +8,28 @@ html, body { height: 100%; }
 #wrapper { min-height: 100%; margin: 0 auto -235px; } /* To always force footer to bottom.  Needs to minus whatever height your footer is set too */
 .container { padding: 0 20px; }
 
+.bottom-rounded-corners(@radius:10px)
+{
+	-webkit-border-bottom-left-radius: @radius;
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-left-radius: @radius;
+	border-bottom-right-radius: @radius;
+}
+
+.os-sb
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
 /*.......................................................the usual*/
 body
 {
-	background-color: #333;
+	background-color: #ccc;
 	color: #fff;
-	padding-top: 160px;
 }
 
 h1
@@ -83,6 +99,27 @@ header
 	.brand
 	{
 		padding: 0 20px 12px 20px;
+	}
+	
+	.nav
+	{
+		float: right;
+		background-color: #333;
+		.bottom-rounded-corners;
+		
+		.active > a,
+		.active > a:hover
+		{
+			background: none;
+		}
+		
+		> li > a
+		{
+			padding: 3px 15px 3px;
+			font-size: 14px;
+			color: #fff;
+			.os-sb;
+		}
 	}
 }
 

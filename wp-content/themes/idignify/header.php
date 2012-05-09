@@ -41,12 +41,19 @@
 
 <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/icons/favicon.ico">
 <link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/images/icons/apple-touch-icon.png">
-	
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.css" type="text/css" media="screen, projection">
-
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap-responsive.css" type="text/css" media="screen">
 <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/style.css">
+<style type="text/css">
+	body
+	{
+		padding-top: 160px;
+	}
+</style>
+<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap-responsive.css" type="text/css" media="screen">
+
 <!--[if lt IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 	
 <!-- Hashgrid - remove before moving to productions -->
@@ -82,8 +89,10 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#about">Who We Are</a></li>
+              <li><a href="#giving">Ways To Give</a></li>
+               <li><a href="#involved">Get Involved</a></li>
+              <li><a href="#issue">The Issue</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
