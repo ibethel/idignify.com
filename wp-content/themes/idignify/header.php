@@ -42,7 +42,8 @@
 <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/icons/favicon.ico">
 <link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/images/icons/apple-touch-icon.png">
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/fonts/embedded-fonts.css" type="text/css" media="screen">
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/style.css">
@@ -76,7 +77,7 @@
 ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> data-spy="scroll">
 <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -88,15 +89,16 @@
           <a class="brand" href="#"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="232" height="114" alt="Logo"></a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">Who We Are</a></li>
-              <li><a href="#giving">Ways To Give</a></li>
-               <li><a href="#involved">Get Involved</a></li>
-              <li><a href="#issue">The Issue</a></li>
+              <li class="active"><a href="#home" class="home">Home</a></li>
+              <li><a href="#about" class="about">Who We Are</a></li>
+              <li><a href="#issue" class="issue">The Issue</a></li>
+              <li><a href="#giving" class="giving">Ways To Give</a></li>
+              <li><a href="#involved" class="involved">Get Involved</a></li>
+             
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container">
+    

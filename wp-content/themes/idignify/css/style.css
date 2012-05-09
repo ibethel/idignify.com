@@ -31,20 +31,115 @@ body {
 .container {
   padding: 0 20px;
 }
+/*.......................................................the colors*/
 .os-sb {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  text-transform: uppercase;
+}
+.os-bold {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
 }
 /*.......................................................the usual*/
 body {
-  background-color: #ccc;
-  color: #fff;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+h1.tagline {
+  font-family: 'MyriadPro', Verdana, Arial, Helvetica, sans-serif;
+  font-size: 75px;
+  font-weight: normal;
+  line-height: 38px;
+  padding-left: 100px;
+}
+h1.tagline span.smaller {
+  font-size: 37px;
+  position: relative;
+  top: -10px;
+}
+h1.tagline span.shift {
+  position: relative;
+  left: 130px;
+}
+strong {
+  font-weight: 700;
 }
 /*.......................................................the header*/
-header {
-  width: 950px;
-  margin: 0 auto;
+/*header
+{
+	width: 950px;
+	margin: 0 auto;
+}*/
+.article-wrapper {
+  min-height: 100%;
+  min-width: 100%;
+  padding-top: 160px;
+  margin-bottom: -160px;
+  z-index: -1;
+}
+.article-wrapper#home {
+  background: url(../images/home-bg.jpg) no-repeat center center;
+  -webkit-background-size: auto 100%;
+  margin-top: -160px;
+  position: relative;
+}
+.article-wrapper#about {
+  background-color: #4fcbb5;
+}
+.article-wrapper#giving {
+  background-color: #d56b0f;
+}
+.article-wrapper#involved {
+  background-color: #ffffff;
+  color: #333;
+}
+.article-wrapper#issue {
+  background-color: #333333;
+}
+/*article#home
+{
+	height: 565px;
+}*/
+footer {
+  height: 50px;
+  background-color: #333333;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 160px;
+  /*	img
+			{
+				display: block;
+				float: right;
+			}*/
+
+}
+footer p {
+  line-height: 50px;
+  color: #999999;
+}
+footer p span {
+  float: right;
+}
+footer p span img {
+  margin-left: 15px;
+}
+.featured {
+  text-align: center;
+  margin-top: 300px;
+}
+a.btn {
+  background-color: #333333;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 /*.......................................................the navigation*/
 .navbar .brand {
@@ -62,7 +157,18 @@ header {
 }
 .navbar .nav .active > a,
 .navbar .nav .active > a:hover {
-  background: none;
+  /*background: none;*/
+
+}
+.navbar .nav .active a.home {
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-left-radius: 10px;
+}
+.navbar .nav .active a.involved {
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-bottom-right-radius: 10px;
 }
 .navbar .nav > li > a {
   padding: 3px 15px 3px;
@@ -74,15 +180,17 @@ header {
 }
 /*.......................................................the sidebar*/
 /*.......................................................the footer*/
-footer,
-.footer-push {
-  height: 235px;
+/*footer, .footer-push
+{
+	height: 235px;
 }
-footer {
-  width: 950px;
-  margin: 0 auto;
-  clear: both;
-}
+
+footer
+{
+	width: 950px;
+	margin: 0 auto;
+	clear: both;
+}*/
 /*.......................................................the pagination*/
 .wp-paginate {
   padding: 0;

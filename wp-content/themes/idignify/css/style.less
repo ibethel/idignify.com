@@ -8,6 +8,16 @@ html, body { height: 100%; }
 #wrapper { min-height: 100%; margin: 0 auto -235px; } /* To always force footer to bottom.  Needs to minus whatever height your footer is set too */
 .container { padding: 0 20px; }
 
+
+/*.......................................................the colors*/
+@blue: #4FCBB5;
+@dark-grey: #333;
+@dark-gray: #333;
+@light-grey: #999;
+@orange: #D56B0F;
+@white: #fff;
+
+
 .bottom-rounded-corners(@radius:10px)
 {
 	-webkit-border-bottom-left-radius: @radius;
@@ -18,23 +28,65 @@ html, body { height: 100%; }
 	border-bottom-right-radius: @radius;
 }
 
+.bottom-left-rounded-corners(@radius:10px)
+{
+	-webkit-border-bottom-left-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	border-bottom-left-radius: @radius;
+}
+
+.bottom-right-rounded-corners(@radius:10px)
+{
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-right-radius: @radius;
+}
+
 .os-sb
 {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
-	text-transform: uppercase;
+}
+
+.os-bold
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+
+p
+{
+	.os-sb;
 }
 
 /*.......................................................the usual*/
 body
 {
-	background-color: #ccc;
-	color: #fff;
+	color: @white;
+	.os-sb;
+	font-size: 14px;
 }
 
-h1
+h1.tagline
 {
+	font-family: 'MyriadPro', Verdana, Arial, Helvetica, sans-serif;
+	font-size: 75px;
+	font-weight: normal;
+	line-height: 38px;
+	padding-left: 100px;
 	
+	span.smaller
+	{
+		font-size: 37px;
+		position: relative;
+		top: -10px;
+	}
+	
+	span.shift
+	{
+		position: relative;
+		left: 130px;
+	}
 }
 
 h2
@@ -86,13 +138,106 @@ a
 	}
 }
 
+strong
+{
+	font-weight: 700;
+}
+
 /*.......................................................the header*/
-header
+/*header
 {
 	width: 950px;
 	margin: 0 auto;
+}*/
+
+.article-wrapper
+{
+	min-height: 100%;
+	min-width: 100%;
+	padding-top: 160px;
+	margin-bottom: -160px;
+	z-index: -1;
 }
 
+.article-wrapper#home
+{
+	background: url(../images/home-bg.jpg) no-repeat center center;
+	-webkit-background-size: auto 100%;
+	margin-top: -160px;
+	position: relative;
+}
+
+.article-wrapper#about
+{
+	background-color: @blue;
+}
+
+.article-wrapper#giving
+{
+	background-color: @orange;
+}
+
+.article-wrapper#involved
+{
+	background-color: @white;
+	color: #333;
+}
+
+.article-wrapper#issue
+{
+	background-color: @dark-grey;
+}
+
+/*article#home
+{
+	height: 565px;
+}*/
+
+	footer
+	{
+		height: 50px;
+		background-color: @dark-grey;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 160px;
+		
+		p
+		{
+			line-height: 50px;
+			color: @light-grey;
+			
+			span
+			{
+				float: right;
+				
+				img
+				{
+					margin-left: 15px;
+				}
+			}
+		}
+		
+	/*	img
+			{
+				display: block;
+				float: right;
+			}*/
+	}
+	
+.featured
+{
+	text-align: center;
+	margin-top: 300px;
+}
+
+a.btn
+{
+	background-color: @dark-grey;
+	color: @white;
+	.os-sb;
+	text-transform: uppercase;
+}
 /*.......................................................the navigation*/
 .navbar
 {
@@ -110,7 +255,17 @@ header
 		.active > a,
 		.active > a:hover
 		{
-			background: none;
+			/*background: none;*/
+		}
+		
+		.active a.home
+		{
+			.bottom-left-rounded-corners;
+		}
+		
+		.active a.involved
+		{
+			.bottom-right-rounded-corners;
 		}
 		
 		> li > a
@@ -119,6 +274,7 @@ header
 			font-size: 14px;
 			color: #fff;
 			.os-sb;
+			text-transform: uppercase;
 		}
 	}
 }
@@ -130,7 +286,7 @@ header
 }
 
 /*.......................................................the footer*/
-footer, .footer-push
+/*footer, .footer-push
 {
 	height: 235px;
 }
@@ -140,7 +296,7 @@ footer
 	width: 950px;
 	margin: 0 auto;
 	clear: both;
-}
+}*/
 
 /*.......................................................the pagination*/
 .wp-paginate
