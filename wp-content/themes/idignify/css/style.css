@@ -43,6 +43,7 @@ body {
 p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
+  text-align: justify;
 }
 /*.......................................................the usual*/
 body {
@@ -67,6 +68,12 @@ h1.tagline span.shift {
   position: relative;
   left: 130px;
 }
+h1 {
+  font-family: "MyriadPro", Verdana, Arial, Helvetica, sans-serif;
+  font-size: 60px;
+  font-weight: normal;
+  line-height: 72px;
+}
 strong {
   font-weight: 700;
 }
@@ -80,8 +87,6 @@ strong {
   min-height: 100%;
   min-width: 100%;
   padding-top: 160px;
-  margin-bottom: -160px;
-  z-index: -1;
 }
 .article-wrapper#home {
   background: url(../images/home-bg.jpg) no-repeat center center;
@@ -92,6 +97,34 @@ strong {
 .article-wrapper#about {
   background-color: #4fcbb5;
 }
+.article-wrapper#about h1 {
+  display: none;
+}
+.video-embed {
+  margin-top: 16px;
+}
+article#giving h1 {
+  margin-bottom: 20px;
+}
+article#giving p {
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  text-align: left;
+}
+article#giving p span {
+  font-size: 18px;
+  padding-right: 20px;
+}
+article#giving .btn {
+  color: #d56b0f;
+}
+article#giving .amount {
+  background-color: #ffffff;
+}
+article#giving .trees {
+  background: url(../images/trees.png) no-repeat;
+  padding: 100px 0;
+}
 .article-wrapper#giving {
   background-color: #d56b0f;
 }
@@ -100,7 +133,8 @@ strong {
   color: #333;
 }
 .article-wrapper#issue {
-  background-color: #333333;
+  background: url(../images/issue-bg.jpg) no-repeat center center;
+  -webkit-background-size: auto 100%;
 }
 /*article#home
 {
@@ -110,9 +144,9 @@ footer {
   height: 50px;
   background-color: #333333;
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
-  bottom: 160px;
+  bottom: 0;
   /*	img
 			{
 				display: block;
@@ -132,7 +166,21 @@ footer p span img {
 }
 .featured {
   text-align: center;
-  margin-top: 300px;
+  margin-top: 425px;
+  position: absolute;
+  bottom: 285px;
+}
+.featured img {
+  display: block;
+  float: left;
+  position: relative;
+  left: 35px;
+}
+.featured img.bubble {
+  top: -5px;
+}
+.featured img.cage {
+  top: -15px;
 }
 a.btn {
   background-color: #333333;
@@ -141,9 +189,28 @@ a.btn {
   font-weight: 600;
   text-transform: uppercase;
 }
+.big-sb {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  padding: 50px 0;
+  line-height: 30px;
+  height: 365px;
+  color: #4fcbb5;
+  background: url(../images/big-sb.png) no-repeat top center;
+  -webkit-background-size: auto auto;
+  position: relative;
+  top: -50px;
+}
+.bu {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 50px 0 25px 0;
+}
 /*.......................................................the navigation*/
 .navbar .brand {
-  padding: 0 20px 12px 20px;
+  padding: 0 20px 40px 20px;
 }
 .navbar .nav {
   float: right;

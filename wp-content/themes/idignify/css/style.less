@@ -57,6 +57,7 @@ html, body { height: 100%; }
 p
 {
 	.os-sb;
+	text-align: justify;
 }
 
 /*.......................................................the usual*/
@@ -87,6 +88,14 @@ h1.tagline
 		position: relative;
 		left: 130px;
 	}
+}
+
+h1
+{
+	font-family: "MyriadPro", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 60px;
+	font-weight: normal;
+	line-height: 72px;
 }
 
 h2
@@ -155,8 +164,6 @@ strong
 	min-height: 100%;
 	min-width: 100%;
 	padding-top: 160px;
-	margin-bottom: -160px;
-	z-index: -1;
 }
 
 .article-wrapper#home
@@ -170,8 +177,53 @@ strong
 .article-wrapper#about
 {
 	background-color: @blue;
+	
+	h1
+	{
+		display: none;
+	}
 }
+.video-embed
+{
+	margin-top: 16px;
+}
+article#giving
+{
 
+	h1
+	{
+		margin-bottom: 20px;
+	}
+	
+	p
+	{
+		text-transform: uppercase;
+		margin-bottom: 15px;
+		text-align: left;
+		
+		span
+		{
+			font-size: 18px;
+			padding-right: 20px;
+		}
+	}
+	
+	.btn
+	{
+		color: @orange;
+	}
+	
+	.amount
+	{
+		background-color: @white;
+	}
+	
+	.trees
+	{
+		background: url(../images/trees.png) no-repeat;
+		padding: 100px 0;
+	}
+}
 .article-wrapper#giving
 {
 	background-color: @orange;
@@ -185,7 +237,8 @@ strong
 
 .article-wrapper#issue
 {
-	background-color: @dark-grey;
+	background: url(../images/issue-bg.jpg) no-repeat center center;
+	-webkit-background-size: auto 100%;
 }
 
 /*article#home
@@ -198,9 +251,9 @@ strong
 		height: 50px;
 		background-color: @dark-grey;
 		width: 100%;
-		position: absolute;
+		position: fixed;
 		left: 0;
-		bottom: 160px;
+		bottom: 0;
 		
 		p
 		{
@@ -224,11 +277,36 @@ strong
 				float: right;
 			}*/
 	}
+
+article#home
+{
+	
+}
 	
 .featured
 {
 	text-align: center;
-	margin-top: 300px;
+	margin-top: 425px;
+	position: absolute;
+	bottom: 285px;
+	
+	img	
+	{
+		display: block;
+		float: left;
+		position: relative;
+		left: 35px;
+	}
+	
+	img.bubble
+	{
+		top: -5px;
+	}
+	
+	img.cage
+	{
+		top: -15px;
+	}
 }
 
 a.btn
@@ -238,12 +316,35 @@ a.btn
 	.os-sb;
 	text-transform: uppercase;
 }
+
+.big-sb
+{
+	.os-bold;
+	font-size: 30px;
+	text-align: center;
+	padding: 50px 0;
+	line-height: 30px;
+	height: 365px;
+	color: @blue;
+	background: url(../images/big-sb.png) no-repeat top center;
+	-webkit-background-size: auto auto;
+	position: relative;
+	top: -50px;
+}
+
+.bu
+{
+	font-weight: 700;
+	text-transform: uppercase;
+	margin: 50px 0 25px 0;
+}
 /*.......................................................the navigation*/
 .navbar
 {
 	.brand
 	{
-		padding: 0 20px 12px 20px;
+		padding: 0 20px 40px 20px;
+		
 	}
 	
 	.nav

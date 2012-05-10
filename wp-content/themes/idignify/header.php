@@ -86,7 +86,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="232" height="114" alt="Logo"></a>
+          <a class="brand" href="#home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="232" height="114" alt="Logo"></a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#home" class="home">Home</a></li>
