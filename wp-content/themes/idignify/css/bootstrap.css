@@ -133,7 +133,7 @@ textarea {
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 18px;
   color: #333333;
   background-color: #ffffff;
@@ -323,7 +323,7 @@ a:hover {
 p {
   margin: 0 0 9px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
 }
 p small {
@@ -2867,14 +2867,6 @@ input[type="submit"].btn.btn-mini {
   font-weight: 200;
   line-height: 1;
   color: #ffffff;
-  
-	background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 70%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.3)), color-stop(70%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* IE10+ */
-	background: radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 .navbar .navbar-text {
   margin-bottom: 0;

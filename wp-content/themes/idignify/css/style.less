@@ -54,6 +54,18 @@ html, body { height: 100%; }
 	font-weight: 700;
 }
 
+.os-light
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+
+.osl
+{
+	.os-light;
+	font-size: 16px;
+}
+
 p
 {
 	.os-sb;
@@ -147,6 +159,17 @@ a
 	}
 }
 
+hold
+{
+		background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 70%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.3)), color-stop(70%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
 strong
 {
 	font-weight: 700;
@@ -170,6 +193,7 @@ strong
 {
 	background: url(../images/home-bg.jpg) no-repeat center center;
 	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
 	margin-top: -160px;
 	position: relative;
 }
@@ -224,6 +248,14 @@ article#giving
 		padding: 100px 0;
 	}
 }
+
+article#involved
+{
+	br
+	{
+		display: none;
+	}
+}
 .article-wrapper#giving
 {
 	background-color: @orange;
@@ -233,12 +265,48 @@ article#giving
 {
 	background-color: @white;
 	color: #333;
-}
+	
+	h1
+	{
+		margin-bottom: 30px;
+	}
+	
+	.big-bc
+	{
+		position: relative;
+		top: -153px;
+		margin-bottom: -120px;
+	}
+	
+	p
+	{
+		margin-top: -17px;
+	}
+	
+	form
+	{
+		margin: 15px 0;
+	}
+	
+	input.btn
+	{
+		position: relative;
+		top: -5px;
+	}
 
+}
+	p.easter-egg
+	{
+		position: relative;
+		bottom: 45px;
+		color: @dark-grey;
+	}
+	
 .article-wrapper#issue
 {
 	background: url(../images/issue-bg.jpg) no-repeat center center;
 	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
 }
 
 /*article#home
@@ -270,32 +338,22 @@ article#giving
 				}
 			}
 		}
-		
-	/*	img
-			{
-				display: block;
-				float: right;
-			}*/
 	}
 
-article#home
-{
-	
-}
+
 	
 .featured
 {
 	text-align: center;
 	margin-top: 425px;
 	position: absolute;
-	bottom: 285px;
+	bottom: 310px;
 	
 	img	
 	{
 		display: block;
 		float: left;
 		position: relative;
-		left: 35px;
 	}
 	
 	img.bubble
@@ -309,7 +367,8 @@ article#home
 	}
 }
 
-a.btn
+a.btn,
+input.btn
 {
 	background-color: @dark-grey;
 	color: @white;
@@ -353,10 +412,23 @@ a.btn
 		background-color: #333;
 		.bottom-rounded-corners;
 		
-		.active > a,
-		.active > a:hover
+		.active > a.about,
+		.active > a.about:hover
 		{
-			/*background: none;*/
+			background-color: @blue;
+		}
+		
+		.active > a.giving,
+		.active > a.giving:hover
+		{
+			background-color: @orange;
+		}
+		
+		.active > a.involved,
+		.active > a.involved:hover
+		{
+			background-color: @white;
+			color: @dark-grey;
 		}
 		
 		.active a.home
@@ -380,78 +452,16 @@ a.btn
 	}
 }
 
-/*.......................................................the sidebar*/
-#sidebar
-{
-	
-}
-
-/*.......................................................the footer*/
-/*footer, .footer-push
-{
-	height: 235px;
-}
-
-footer
-{
-	width: 950px;
-	margin: 0 auto;
-	clear: both;
-}*/
-
-/*.......................................................the pagination*/
-.wp-paginate
-{
-	padding: 0;
-	margin: 0;
-	
-	li
-	{
-		display: inline;
-		list-style: none;
-	}
-	
-	a
-	{
-		background: #ddd; 
-		border: 1px solid #ccc; 
-		color: #666; 
-		margin-right: 4px; 
-		padding: 3px 6px;
-		text-align: center; 
-		text-decoration: none;
-		
-		:hover, :active
-		{
-			background: #ccc; 
-			color: #888;
-		}
-	}
-	
-	.title
-	{
-		color: #555; 
-		margin-right: 4px;
-	}
-	
-	.gap
-	{
-		color: #999; 
-		margin-right: 4px;
-	}
-	
-	.current
-	{
-		color: #fff; 
-		background: #5f87ae; 
-		border: 1px solid #89adcf; 
-		margin-right: 4px; 
-		padding: 3px 6px;
-	}
-}
-
 /*.......................................................the forms*/
-
+input[type="text"],
+input[type="email"]
+{
+	width: 136px;
+	height: 20px;
+	padding: 6px;
+	border: 2px solid #ccc;
+	.os-light;
+}
 
 /*.......................................................the images*/
 img.size-auto,
@@ -525,4 +535,28 @@ img.aligncenter
 	margin: 0;
 }
 
-/*.......................................................the misc*/
+/*.......................................................the utilities*/
+.tal
+{
+	text-align: left;
+}
+
+.tac
+{
+	text-align: center;
+}
+
+.tar
+{
+	text-align: right;
+}
+
+.taj
+{
+	text-align: justify;
+}
+
+.clear
+{
+	clear: both;
+}

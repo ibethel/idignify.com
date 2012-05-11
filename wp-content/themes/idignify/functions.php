@@ -37,6 +37,14 @@ if ( ! function_exists( 'smm_setup' ) ):
  * @since Twenty Ten 1.0
  */
 remove_action('wp_head', 'wp_generator');  
+remove_filter('the_content', 'wptexturize');
+remove_filter('the_excerpt', 'wptexturize');
+
+function mod_mce($initArray) {
+	$initArray['verify_html'] = false;
+	return $initArray;
+}
+add_filter('tiny_mce_before_init', 'mod_mce');
 
 function smm_setup() {
 
@@ -472,3 +480,4 @@ function smm_posted_in() {
 	);
 }
 endif;
+

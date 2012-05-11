@@ -41,10 +41,9 @@
 
 <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/icons/favicon.ico">
 <link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/images/icons/apple-touch-icon.png">
-
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/fonts/embedded-fonts.css" type="text/css" media="screen">
 <link rel="profile" href="http://gmpg.org/xfn/11" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/fonts/embedded-fonts.css" type="text/css" media="screen">
 <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/style.css">
 <style type="text/css">
@@ -53,21 +52,13 @@
 		padding-top: 160px;
 	}
 </style>
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap-responsive.css" type="text/css" media="screen">
+<!--<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap-responsive.css" type="text/css" media="screen">-->
 
 <!--[if lt IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 	
-<!-- Hashgrid - remove before moving to productions -->
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/hashgrid.css">
-	
-<!-- Uncomment for mobile browsers
-<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="<?php bloginfo('template_directory'); ?>/css/handheld.css" />
--->
-	
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-	
 <script src="<?php bloginfo('template_directory'); ?>/js/modernizr-1.7.min.js"></script>
 <!--[if lte IE 8]><script src="<?php bloginfo('template_directory'); ?>/js/selectivizr-min.js"></script><![endif]--> 
+
 <?php
 
 	if ( is_singular() && get_option( 'thread_comments' ) )
@@ -78,27 +69,31 @@
 </head>
 
 <body <?php body_class(); ?> data-spy="scroll">
-<div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="232" height="114" alt="Logo"></a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#home" class="home">Home</a></li>
-              <li><a href="#about" class="about">Who We Are</a></li>
-              <li><a href="#issue" class="issue">The Issue</a></li>
-              <li><a href="#giving" class="giving">Ways To Give</a></li>
-              <li><a href="#involved" class="involved">Get Involved</a></li>
-             
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
+	<header>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="<?php bloginfo('url'); ?>/#home">
+						<img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="232" height="114" alt="Logo">
+					</a>
+					<div class="nav-collapse">
+						<nav>
+							<ul class="nav">
+								<li class="active"><a href="#home" class="home">Home</a></li>
+								<li><a href="#about" class="about">Who We Are</a></li>
+								<li><a href="#issue" class="issue">The Issue</a></li>
+								<li><a href="#giving" class="giving">Ways To Give</a></li>
+								<li><a href="#involved" class="involved">Get Involved</a></li>
+							</ul>
+						</nav>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+	</header>
     
