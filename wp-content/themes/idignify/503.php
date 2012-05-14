@@ -14,7 +14,7 @@
 	
 	#logo
 	{
-		width: 355px;
+		width: 232px;
 		margin: 50px auto;
 	}
 	
@@ -29,7 +29,7 @@
 <body>
 		
 	<div id="logo">
-		<img src="http://www.domain.com/wp-content/themes/project_theme/images/logo.png" width="335" height="52" alt="Logo">
+		<img src="http://www.idignify.com/wp-content/themes/idignify/images/logo.png" width="232" height="114" alt="Logo">
 		<p>We are currently undergoing routine maintenance.  Please check back soon.</p>
 	</div>
 		
