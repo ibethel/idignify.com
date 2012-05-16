@@ -1,0 +1,43 @@
+/*.......................................................the LESS colors*/
+/*.......................................................the LESS font families*/
+.os-sb {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+.os-bold {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+.os-light {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+.osl {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+/*.......................................................the misc LESS mixins & variables*/
+.hold {
+  background: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(0, 0, 0, 0.3)), color-stop(70%, rgba(0, 0, 0, 0)));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-radial-gradient(center, cover, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+  /* Opera 12+ */
+
+  background: -ms-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+  /* IE10+ */
+
+  background: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+
+}

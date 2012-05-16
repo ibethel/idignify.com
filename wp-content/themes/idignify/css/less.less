@@ -1,8 +1,69 @@
 
 /*.......................................................the LESS colors*/
-
+@blue: #4FCBB5;
+@dark-grey: #333;
+@dark-gray: #333;
+@light-grey: #999;
+@orange: #D56B0F;
+@white: #fff;
 
 /*.......................................................the LESS font families*/
+.os-sb
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+}
 
+.os-bold
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+
+.os-light
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+
+.osl
+{
+	.os-light;
+	font-size: 16px;
+}
 
 /*.......................................................the misc LESS mixins & variables*/
+.bottom-rounded-corners(@radius:10px)
+{
+	-webkit-border-bottom-left-radius: @radius;
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-left-radius: @radius;
+	border-bottom-right-radius: @radius;
+}
+
+.bottom-left-rounded-corners(@radius:10px)
+{
+	-webkit-border-bottom-left-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	border-bottom-left-radius: @radius;
+}
+
+.bottom-right-rounded-corners(@radius:10px)
+{
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-right-radius: @radius;
+}
+
+.hold
+{
+	background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 70%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.3)), color-stop(70%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 70%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}

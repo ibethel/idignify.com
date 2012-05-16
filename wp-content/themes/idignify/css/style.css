@@ -1,37 +1,5 @@
-/*@import url('less.less'); /* LESS colors, font families, mixins and variables */
-article,
-aside,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-html {
-  overflow-y: scroll;
-}
-/* force scrollbar */
-html,
-body {
-  height: 100%;
-}
-.screen-reader-text {
-  position: absolute;
-  left: -9000px;
-}
-/* Text meant only for screen readers */
-#wrapper {
-  min-height: 100%;
-  margin: 0 auto -235px;
-}
-/* To always force footer to bottom.  Needs to minus whatever height your footer is set too */
-.container {
-  padding: 0 20px;
-}
-/*.......................................................the colors*/
+/*.......................................................the LESS colors*/
+/*.......................................................the LESS font families*/
 .os-sb {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
@@ -49,41 +17,8 @@ body {
   font-weight: 400;
   font-size: 16px;
 }
-p {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  text-align: justify;
-}
-/*.......................................................the usual*/
-body {
-  color: #ffffff;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-}
-h1.tagline {
-  font-family: 'MyriadPro', Verdana, Arial, Helvetica, sans-serif;
-  font-size: 75px;
-  font-weight: normal;
-  line-height: 38px;
-  padding-left: 100px;
-}
-h1.tagline span.smaller {
-  font-size: 37px;
-  position: relative;
-  top: -10px;
-}
-h1.tagline span.shift {
-  position: relative;
-  left: 130px;
-}
-h1 {
-  font-family: "MyriadPro", Verdana, Arial, Helvetica, sans-serif;
-  font-size: 60px;
-  font-weight: normal;
-  line-height: 72px;
-}
-hold {
+/*.......................................................the misc LESS mixins & variables*/
+.hold {
   background: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
   /* FF3.6+ */
 
@@ -106,20 +41,53 @@ hold {
   /* IE6-9 fallback on horizontal gradient */
 
 }
+/* LESS colors, font families, mixins and variables */
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+html {
+  overflow-y: scroll;
+}
+/* force scrollbar */
+html,
+body {
+  height: 100%;
+}
+/*.......................................................the usual*/
+body {
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+h1 {
+  font-family: "MyriadPro", Verdana, Arial, Helvetica, sans-serif;
+  font-size: 60px;
+  font-weight: normal;
+  line-height: 72px;
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  text-align: justify;
+}
 strong {
   font-weight: 700;
 }
-/*.......................................................the header*/
-/*header
-{
-	width: 950px;
-	margin: 0 auto;
-}*/
 .article-wrapper {
   min-height: 100%;
   min-width: 100%;
   padding-top: 160px;
 }
+/*.......................................................the home section*/
 .article-wrapper#home {
   background: url(../images/home-bg.jpg) no-repeat center center;
   -webkit-background-size: auto 100%;
@@ -127,14 +95,69 @@ strong {
   margin-top: -160px;
   position: relative;
 }
+.tagline {
+  font-family: 'MyriadPro', Verdana, Arial, Helvetica, sans-serif;
+  font-size: 75px;
+  font-weight: normal;
+  line-height: 38px;
+  padding-left: 100px;
+}
+.tagline span.smaller {
+  font-size: 37px;
+  position: relative;
+  top: -10px;
+}
+.tagline span.shift {
+  position: relative;
+  left: 130px;
+}
+.featured {
+  text-align: center;
+  margin-top: 425px;
+  position: absolute;
+  bottom: 310px;
+}
+.featured img {
+  display: block;
+  float: left;
+  position: relative;
+}
+.featured img.bubble {
+  top: -5px;
+}
+.featured img.cage {
+  top: -15px;
+}
+/*.......................................................the who we are section*/
 .article-wrapper#about {
   background-color: #4fcbb5;
 }
-.article-wrapper#about h1 {
-  display: none;
+.big-sb {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  padding: 50px 0;
+  line-height: 30px;
+  height: 365px;
+  color: #4fcbb5;
+  background: url(../images/big-sb.png) no-repeat top center;
+  -webkit-background-size: auto auto;
+  position: relative;
+  top: -50px;
+}
+/*.......................................................the issue section*/
+.article-wrapper#issue {
+  background: url(../images/issue-bg.jpg) no-repeat center center;
+  -webkit-background-size: auto 100%;
+  background-size: auto 100%;
 }
 .video-embed {
   margin-top: 16px;
+}
+/*.......................................................the ways to give section*/
+.article-wrapper#giving {
+  background-color: #d56b0f;
 }
 article#giving h1 {
   margin-bottom: 20px;
@@ -158,12 +181,7 @@ article#giving .trees {
   background: url(../images/trees.png) no-repeat;
   padding: 100px 0;
 }
-article#involved br {
-  display: none;
-}
-.article-wrapper#giving {
-  background-color: #d56b0f;
-}
+/*.......................................................the get involved section*/
 .article-wrapper#involved {
   background-color: #ffffff;
   color: #333;
@@ -186,81 +204,8 @@ article#involved br {
   position: relative;
   top: -5px;
 }
-p.easter-egg {
-  position: relative;
-  bottom: 45px;
-  color: #333333;
-}
-.article-wrapper#issue {
-  background: url(../images/issue-bg.jpg) no-repeat center center;
-  -webkit-background-size: auto 100%;
-  background-size: auto 100%;
-}
-/*article#home
-{
-	height: 565px;
-}*/
-footer {
-  height: 50px;
-  background-color: #333333;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-footer p {
-  line-height: 50px;
-  color: #999999;
-}
-footer p span {
-  float: right;
-}
-footer p span img {
-  margin-left: 15px;
-}
-.featured {
-  text-align: center;
-  margin-top: 425px;
-  position: absolute;
-  bottom: 310px;
-}
-.featured img {
-  display: block;
-  float: left;
-  position: relative;
-}
-.featured img.bubble {
-  top: -5px;
-}
-.featured img.cage {
-  top: -15px;
-}
-a.btn,
-input.btn {
-  background-color: #333333;
-  color: #ffffff;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-.big-sb {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 30px;
-  text-align: center;
-  padding: 50px 0;
-  line-height: 30px;
-  height: 365px;
-  color: #4fcbb5;
-  background: url(../images/big-sb.png) no-repeat top center;
-  -webkit-background-size: auto auto;
-  position: relative;
-  top: -50px;
-}
-.bu {
-  font-weight: 700;
-  text-transform: uppercase;
-  margin: 50px 0 25px 0;
+article#involved br {
+  display: none;
 }
 /*.......................................................the navigation*/
 .navbar .brand {
@@ -294,11 +239,6 @@ input.btn {
   -moz-border-radius-bottomleft: 10px;
   border-bottom-left-radius: 10px;
 }
-.navbar .nav .active a.involved {
-  -webkit-border-bottom-right-radius: 10px;
-  -moz-border-radius-bottomright: 10px;
-  border-bottom-right-radius: 10px;
-}
 .navbar .nav > li > a {
   padding: 3px 15px 3px;
   font-size: 14px;
@@ -306,6 +246,30 @@ input.btn {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   text-transform: uppercase;
+}
+/*.......................................................the footer*/
+footer {
+  height: 50px;
+  background-color: #333333;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+footer p {
+  line-height: 50px;
+  color: #999999;
+}
+footer p span {
+  float: right;
+}
+footer p span img {
+  margin-left: 15px;
+}
+p.easter-egg {
+  position: relative;
+  bottom: 45px;
+  color: #333333;
 }
 /*.......................................................the forms*/
 input[type="text"],
@@ -316,6 +280,9 @@ input[type="email"] {
   border: 2px solid #ccc;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+}
+.placeholder {
+  color: #999999;
 }
 /*.......................................................the images*/
 img.size-auto,
@@ -377,6 +344,15 @@ img.aligncenter {
 .wp-smiley {
   margin: 0;
 }
+/*.......................................................the buttons*/
+a.btn,
+input.btn {
+  background-color: #333333;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /*.......................................................the utilities*/
 .tal {
   text-align: left;
@@ -392,4 +368,9 @@ img.aligncenter {
 }
 .clear {
   clear: both;
+}
+.bu {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 50px 0 25px 0;
 }
