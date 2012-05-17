@@ -163,13 +163,16 @@ article#giving h1 {
   margin-bottom: 20px;
 }
 article#giving p {
-  text-transform: uppercase;
   margin-bottom: 15px;
   text-align: left;
 }
 article#giving p span {
   font-size: 18px;
+  text-transform: uppercase;
   padding-right: 20px;
+}
+article#giving .small {
+  margin-top: 30px;
 }
 article#giving .btn {
   color: #d56b0f;
@@ -180,6 +183,9 @@ article#giving .amount {
 article#giving .trees {
   background: url(../images/trees.png) no-repeat;
   padding: 100px 0;
+}
+article#giving .paypal-logo {
+  margin-left: 10px;
 }
 /*.......................................................the get involved section*/
 .article-wrapper#involved {
@@ -375,4 +381,8 @@ input.btn {
   font-weight: 700;
   text-transform: uppercase;
   margin: 50px 0 25px 0;
+}
+.small {
+  font-size: 12px;
+  text-transform: normal;
 }
