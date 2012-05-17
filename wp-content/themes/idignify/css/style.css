@@ -244,7 +244,7 @@ article#involved br {
   font-size: 14px;
   color: #fff;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
 }
 /*.......................................................the footer*/
@@ -259,6 +259,8 @@ footer {
 footer p {
   line-height: 50px;
   color: #999999;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 }
 footer p span {
   float: right;
