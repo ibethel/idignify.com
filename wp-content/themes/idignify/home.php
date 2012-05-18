@@ -36,6 +36,6 @@
 	<?php endif; ?>
 
 	<div class="container">
-		<p class="easter-egg">&copy;<?php echo date('Y'); ?> iDignify</p>
+		<p class="easter-egg">Yummy yummy yummy, I got love in my tummy.</p>
 	</div>
 <?php get_footer(); ?>
