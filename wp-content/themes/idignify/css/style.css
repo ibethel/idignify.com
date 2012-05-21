@@ -182,6 +182,7 @@ article#giving .amount {
 }
 article#giving .trees {
   background: url(../images/trees.png) no-repeat;
+  -webkit-background-size: 100% auto;
   padding: 100px 0;
 }
 article#giving .paypal-logo {

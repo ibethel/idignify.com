@@ -1,3 +1,7 @@
+html {
+overflow-y: hidden;
+}
+
 /*!
  * Bootstrap Responsive v2.0.2
  *
@@ -85,6 +89,17 @@
   .visible-desktop {
     display: none;
   }
+  
+  .tablet > [class*="span"]{
+    float: none;
+    display: block;
+    width: auto;
+  }
+  
+  article#involved input[type="text"]
+  {
+  	width: 92px;
+  }
 }
 @media (max-width: 480px) {
   .nav-collapse {
@@ -135,15 +150,27 @@
 }
 @media (max-width: 767px) {
   body {
-    padding-left: 20px;
-    padding-right: 20px;
+    
   }
+  
+
   .navbar-fixed-top {
     margin-left: -20px;
     margin-right: -20px;
   }
+
+.navbar .brand
+{
+	padding: 0 20px 20px 20px;
+}
+
+.navbar .brand img
+{
+	margin-left: 20px;
+}
   .container {
     width: auto;
+    padding: 0 20px;
   }
   .row-fluid {
     width: 100%;
@@ -377,8 +404,20 @@
   body {
     padding-top: 0;
   }
+  
+  .article-wrapper#home
+  {
+  	background: url(../images/home-bg-tablets.jpg) no-repeat top center;
+  	margin-top: 0px;
+/*  	-webkit-background-size: auto auto;
+	background-size: auto auto;*/
+  }
+  .tagline
+  {
+  	padding-left: 0
+  }
   .navbar-fixed-top {
-    position: static;
+   /* position: static;*/
     margin-bottom: 18px;
   }
   .navbar-fixed-top .navbar-inner {
@@ -394,7 +433,12 @@
     margin: 0 0 0 -5px;
   }
   .navbar .nav-collapse {
-    clear: left;
+   /* clear: left;*/
+  }
+  
+  .navbar .nav-collapse a.home
+  {
+  	display: none;
   }
   .navbar .nav {
     float: none;
@@ -418,9 +462,9 @@
     padding: 6px 15px;
     font-weight: bold;
     color: #999999;
-    -webkit-border-radius: 3px;
+/*    -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 3px;*/
   }
   .navbar .dropdown-menu li + li a {
     margin-bottom: 2px;
