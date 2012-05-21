@@ -109,6 +109,32 @@ overflow-y: hidden;
     display: block;
     line-height: 18px;
   }
+  
+  h1
+  {
+  	font-size: 38px;
+  	line-height: 40px;
+  }
+  
+  article#giving .offset1
+  {
+  	display: none;
+  }
+  
+  article#giving .trees
+  {
+  	padding: 0;
+  }
+  
+  article#giving p span
+  {
+  	display: block;
+  	margin-bottom: 10px;
+  }
+  
+  article#giving .paypal-logo {
+	margin-left: 0;
+	}
   input[type="checkbox"],
   input[type="radio"] {
     border: 1px solid #ccc;
