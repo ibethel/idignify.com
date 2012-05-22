@@ -107,13 +107,13 @@ overflow-y: hidden;
     line-height: 18px;
   }
   .btn-navbar {
-    margin-right: 15px;
+    margin-right: 20px;
   }
   .navbar .brand img {
     width: 120px;
   }
   .article-wrapper {
-    padding-top: 145px;
+    padding-top: 100px;
   }
   h1.tagline {
     font-size: 38px;
