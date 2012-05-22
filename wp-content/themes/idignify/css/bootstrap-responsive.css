@@ -110,13 +110,13 @@ overflow-y: hidden;
     margin-right: 15px;
   }
   .navbar .brand img {
-    width: 180px;
+    width: 120px;
   }
   .article-wrapper {
     padding-top: 145px;
   }
   h1.tagline {
-    font-size: 58px;
+    font-size: 48px;
   }
   h1.tagline span.smaller {
     font-size: 20px;
