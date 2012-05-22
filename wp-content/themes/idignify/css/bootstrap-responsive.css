@@ -132,12 +132,13 @@ overflow-y: hidden;
     bottom: 200px;
   }
   article#home .featured a.btn {
-    margin-right: 10px;
+    margin-right: 5px;
   }
   article#home .featured img {
     display: inline;
     float: left;
     padding-right: 5px;
+    width: 32px;
   }
   article#home .featured .span3 {
     float: left;
@@ -150,8 +151,9 @@ overflow-y: hidden;
   }
   article#about .big-sb {
     top: 0;
-    font-size: 25px;
-    padding: 25px 0;
+    font-size: 20px;
+    padding: 18px 0;
+    line-height: 25px;
   }
   article#giving .offset1 {
     display: none;
@@ -167,7 +169,7 @@ overflow-y: hidden;
     margin-left: 0;
   }
   article#involved .span8 {
-    width: 320px;
+    width: 100%;
   }
   .article-wrapper#involved .big-bc {
     top: -183px;
@@ -215,7 +217,10 @@ overflow-y: hidden;
     position: static;
   }
   footer p span img {
-    margin-left: 30px;
+    margin-left: 10px;
+  }
+  footer p {
+    text-align: left;
   }
   span.legal {
     display: none;
