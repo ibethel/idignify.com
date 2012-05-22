@@ -35,7 +35,4 @@
 		<p>There was a major error!  Please contact us at <a href="mailto:info@idignify.com and let us know?Subject=Website Issue">info@idignify.com</a> and let us know.  Thanks</p>
 	<?php endif; ?>
 
-	<div class="container">
-		<p class="easter-egg">Yummy yummy yummy, I got love in my tummy.</p>
-	</div>
 <?php get_footer(); ?>

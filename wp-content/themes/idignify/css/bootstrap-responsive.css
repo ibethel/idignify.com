@@ -132,13 +132,23 @@ overflow-y: hidden;
   	margin-bottom: 10px;
   }
   
-  article#giving .paypal-logo {
+  article#giving .paypal-logo 
+	{
 	margin-left: 0;
+	}
+	
+	article#involved .span8
+	{
+		width: 320px;
 	}
   input[type="checkbox"],
   input[type="radio"] {
     border: 1px solid #ccc;
   }
+input
+{
+	display: block;
+}
   .form-horizontal .control-group > label {
     float: none;
     width: auto;
@@ -178,8 +188,6 @@ overflow-y: hidden;
   body {
     
   }
-  
-
   .navbar-fixed-top {
     margin-left: -20px;
     margin-right: -20px;
