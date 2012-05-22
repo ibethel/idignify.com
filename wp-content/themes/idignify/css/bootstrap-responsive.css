@@ -139,6 +139,7 @@ overflow-y: hidden;
     float: left;
     padding-right: 5px;
     width: 32px;
+    display: none;
   }
   article#home .featured .span3 {
     float: left;
