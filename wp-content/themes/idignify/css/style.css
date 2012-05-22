@@ -142,7 +142,7 @@ strong {
   height: 365px;
   color: #4fcbb5;
   background: url(../images/big-sb.png) no-repeat top center;
-  -webkit-background-size: auto auto;
+  -webkit-background-size: 100% auto;
   position: relative;
   top: -50px;
 }
@@ -274,6 +274,9 @@ footer p span {
 }
 footer p span img {
   margin-left: 15px;
+}
+footer p span.legal {
+  float: left;
 }
 p.easter-egg {
   position: relative;
