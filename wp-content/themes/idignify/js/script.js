@@ -101,3 +101,7 @@ jQuery(document).ready(function(){
 		}
 	});
 });
+
+jQuery(document).ready(function(){
+$('.article-wrapper#home, .article-wrapper#issue').css({backgroundSize: "cover"});
+});
