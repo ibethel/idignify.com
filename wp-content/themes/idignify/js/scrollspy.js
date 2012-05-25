@@ -146,6 +146,9 @@
       var $spy = $(this)
       $spy.scrollspy($spy.data())
     })
+	$('[data-spy="scroll"]').each(function () {
+	  $(this).scrollspy('refresh');
+	});
   })
 
 }(window.jQuery);

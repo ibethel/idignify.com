@@ -93,6 +93,7 @@ strong
 {
 	background: url(../images/home-bg.jpg) no-repeat center center;
 	-webkit-background-size: auto 100%;
+	-o-background-size: auto 100%;
 	background-size: auto 100%;
 	margin-top: -160px;
 	position: relative;
@@ -161,7 +162,6 @@ strong
 	height: 365px;
 	color: @blue;
 	background: url(../images/big-sb.png) no-repeat top center;
-	-webkit-background-size: 100% auto;
 	position: relative;
 	top: -50px;
 }
@@ -172,6 +172,7 @@ strong
 	background: url(../images/issue-bg.jpg) no-repeat center center;
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
+	-o-background-size: auto 100%;
 }
 
 .video-embed
@@ -225,6 +226,8 @@ article#giving
 	{
 		background: url(../images/trees.png) no-repeat;
 		-webkit-background-size: 100% auto;
+		background-size: 100% auto;
+		-o-background-size: 100% auto;
 		padding: 100px 0;
 	}
 	
@@ -274,6 +277,11 @@ article#involved
 	br
 	{
 		display: none;
+	}
+	
+	p
+	{
+		.os-light;
 	}
 }
 
@@ -370,7 +378,7 @@ p.easter-egg
 input[type="text"],
 input[type="email"]
 {
-	width: 136px;
+	width: 25%;
 	height: 20px;
 	padding: 6px;
 	border: 2px solid #ccc;
@@ -501,4 +509,13 @@ input.btn
 {
 	font-size: 12px;
 	text-transform: normal;
+}
+
+// WordPress Resets
+body.logged-in {
+	padding-top: 88px;
+	
+	.navbar {
+		margin-top: 28px;
+	}
 }

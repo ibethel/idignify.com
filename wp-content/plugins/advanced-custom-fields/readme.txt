@@ -85,6 +85,33 @@ http://www.advancedcustomfields.com/support/
 
 == Changelog ==
 
+= 3.2.3 =
+* [Fixed] Include Wysiwyg scripts / styles through the editor class
+* [Fixed] Wysiwyg in repeater not working
+* [Fixed] Remove Swedish translation until string / js bugs are fixed
+* [Fixed] Checkbox  array value issue: http://wordpress.org/support/topic/plugin-advanced-custom-fields-php-warning-in-corefieldscheckboxphp?replies=6
+* [Added] Add inherit to relationship posts query - http://www.advancedcustomfields.com/support/discussion/comment/3826#Comment_3826
+* [Fixed] Relationship shows deleted posts - http://www.advancedcustomfields.com/support/discussion/2080/strange-behavior-of-relationship-field-trash-posts
+* [Fixed] Wysiwyg editor not working on taxonomy edit page 
+
+= 3.2.2 =
+* [Fixed] Fix layout bug: Nested repeaters of different layouts
+* [Fixed] Fix strip slashes bug
+* [Fixed] Fix nested repeater bug - http://www.advancedcustomfields.com/support/discussion/2068/latest-update-broken-editing-environment-
+* [Fixed] Test / Fix add multiple images to repeater
+
+= 3.2.1 =
+* Field groups can now be added to options page with layout "side"
+* Fixed debug error when saving a taxonomy:
+* Fixed unnecessary code: Remove Strip Slashes on save functions
+* Added new add row buttons to the repeater field and upgraded the css / js
+* Fixed debug error caused by the WYSIWYG field: wp_tiny_mce is deprecated since version 3.3! Use wp_editor() instead.
+* Fixed duplicate field error where all sub fields became repeater fields.
+* Add Swedish translation: http://advancedcustomfields.com/support/discussion/1993/swedish-translation
+* CSS improvements
+* Fixed IE9 Bug not returning an image preview on upload / select
+* Fixed Multi export php syntax bug.
+
 = 3.2.0 =
 * Fixed Browser bug with Flexible Field: Add Row button works again
 * Added Brazilian Translation. Thanks to Marcelo Paoli Graciano - www.paolidesign.com.br
