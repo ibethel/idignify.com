@@ -117,6 +117,7 @@ overflow-y: hidden;
   }
   h1.tagline {
     font-size: 38px;
+    display: none;
   }
   h1.tagline span.smaller {
     font-size: 15px;
@@ -139,7 +140,6 @@ overflow-y: hidden;
     float: left;
     padding-right: 5px;
     width: 32px;
-    display: none;
   }
   article#home .featured .span3 {
     float: left;
