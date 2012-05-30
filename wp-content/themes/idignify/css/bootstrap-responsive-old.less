@@ -1,3 +1,7 @@
+/*html {
+overflow-y: hidden;
+}
+*/
 /*!
  * Bootstrap Responsive v2.0.2
  *
@@ -7,13 +11,10 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
-body.logged-in {
-  padding-top: 0;
-}
 .clearfix {
   *zoom: 1;
 }
-.clearfix:before,
+.clearfix:before, 
 .clearfix:after {
   display: table;
   content: "";
@@ -61,6 +62,8 @@ body.logged-in {
 .hidden-desktop {
   display: none;
 }
+
+// Landscape phone to portrait tablet
 @media (max-width: 767px) {
   .visible-phone {
     display: block;
@@ -75,6 +78,8 @@ body.logged-in {
     display: none;
   }
 }
+
+// Portrait tablet to landscape and desktop
 @media (min-width: 768px) and (max-width: 979px) {
   .visible-tablet {
     display: block;
@@ -88,6 +93,17 @@ body.logged-in {
   .visible-desktop {
     display: none;
   }
+  
+  .tablet > [class*="span"]{
+    float: none;
+    display: block;
+    width: auto;
+  }
+  
+  article#involved input[type="text"]
+  {
+  	width: 92px;
+  }
 }
 @media (max-width: 480px) {
   .nav-collapse {
@@ -97,10 +113,135 @@ body.logged-in {
     display: block;
     line-height: 18px;
   }
+.btn-navbar
+{
+	margin-right: 20px;
+}
+.navbar
+{
+	.brand
+	{
+		img
+		{
+			width: 120px;
+		}
+	}
+}
+
+.article-wrapper
+{
+	padding-top: 100px;
+}
+
+h1.tagline
+{
+	font-size: 38px;
+	display: none;
+	
+	span.smaller
+	{
+		font-size: 15px;
+	}
+	
+}
+  
+  h1
+  {
+  	font-size: 38px;
+  	line-height: 40px;
+  }
+
+article#home
+{
+	margin-top: 100px;
+	
+	.featured
+	{
+		bottom: 200px;
+		
+		a.btn
+		{
+			margin-right: 5px;
+		}
+		
+		img
+		{
+			display: inline;
+			float: left;
+			padding-right: 5px;
+			width: 32px;
+		}
+		
+		.span3
+		{
+			float: left;
+		}
+	}
+}
+
+article#about
+{	
+	p.bu
+	{
+		text-align: left;
+		
+		br
+		{
+			display: none;
+		}
+	}
+	
+	.big-sb
+	{
+		top: 0;
+		font-size: 20px;
+		padding: 18px 0;
+		line-height: 25px;
+	}
+}
+  
+  article#giving .offset1
+  {
+  	display: none;
+  }
+  
+  article#giving .trees
+  {
+  	padding: 0;
+  }
+  
+  article#giving p span
+  {
+  	display: block;
+  	margin-bottom: 10px;
+  }
+  
+  article#giving .paypal-logo 
+	{
+	margin-left: 0;
+	}
+	
+	article#involved .span8
+	{
+		width: 100%;
+	}
+	
+.article-wrapper#involved
+{
+	.big-bc
+	{
+		top: -183px;
+		left: 4%;
+	}
+}
   input[type="checkbox"],
   input[type="radio"] {
     border: 1px solid #ccc;
   }
+input
+{
+	display: block;
+}
   .form-horizontal .control-group > label {
     float: none;
     width: auto;
@@ -135,98 +276,45 @@ body.logged-in {
   .carousel-caption {
     position: static;
   }
-  /* Custom */
-  .navbar .brand img {
-    width: 110px;
-  }
-  h1.tagline {
-    font-size: 38px;
-    padding: 0;
-  }
-  h1.tagline span.smaller {
-    font-size: 15px;
-  }
-  h1 {
-    font-size: 38px;
-    line-height: 40px;
-  }
-  .featured > [class*="span"] {
-    float: left;
-    margin: 0 20px !important;
-  }
-  article#about p.bu {
-    text-align: left;
-  }
-  article#about p.bu br {
-    display: none;
-  }
-  article#giving .offset1 {
-    display: none;
-  }
-  article#giving .trees {
-    padding: 0;
-  }
-  article#giving p span {
-    display: block;
-    margin-bottom: 10px;
-  }
-  article#giving .paypal-logo {
-    margin-left: 0;
-  }
-  article#involved .span8 {
-    width: 100%;
-    margin-bottom: 100px;
-    margin-left: 0;
-  }
-  article#involved span.and {
-    display: none;
-  }
-  article#involved .big-bc {
-    top: -216px !important;
-    width: 100%;
-  }
-  article#involved .big-bc img {
-    padding-left: 35px;
-  }
-  article#involved .bird-cage > [class*="span"] {
-    float: none;
-    width: 100%;
-  }
-  article#involved .petition {
-    position: relative;
-    top: 85px;
-  }
-  article#involved .together {
-    position: relative;
-    top: 225px;
-    clear: none;
-  }
-  input[type="text"],
-  input[type="email"] {
-    display: block;
-    width: 94% !important;
-  }
-  input[type="submit"] {
-    width: 100%;
-    max-width: 428px;
-    height: 36px;
-    margin-top: 5px;
-  }
-  footer p span img {
-    margin-left: 10px;
-  }
-  footer p {
-    text-align: left;
-  }
-  span.legal {
-    display: none;
-  }
+
+footer
+{
+	p span img
+	{
+		margin-left: 10px;
+	}
+	
+	p
+	{
+		text-align: left;
+	}
 }
+
+	span.legal
+	{
+		display: none;
+	}
+}
+
+// Landscape phone to portrait tablet
 @media (max-width: 767px) {
+  body {
+    
+  }
   .navbar-fixed-top {
     margin-left: -20px;
     margin-right: -20px;
   }
+
+.navbar .brand
+{
+	padding: 0 20px 20px 20px;
+}
+
+.navbar .brand img
+{
+	margin-left: 20px;
+}
   .container {
     width: auto;
     padding: 0 20px;
@@ -255,9 +343,9 @@ body.logged-in {
     width: 100%;
     min-height: 28px;
     /* Make inputs at least the height of their button counterpart */
-  
+
     /* Makes inputs behave like true block-level elements */
-  
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -266,33 +354,6 @@ body.logged-in {
   .input-prepend input[class*="span"],
   .input-append input[class*="span"] {
     width: auto;
-  }
-  /* Custom */
-  .featured > [class*="span"] {
-    float: left;
-    margin: 0 105px;
-  }
-  .featured > [class*="span"] img {
-    margin-right: 5px;
-  }
-  .big-sb {
-    top: 50px;
-  }
-  .video-embed {
-    margin-top: 50px !important;
-  }
-  .coins {
-    float: left !important;
-  }
-  .coins img {
-    margin-right: 20px;
-  }
-  .bird-cage > [class*="span"] {
-    float: left;
-    width: 220px;
-  }
-  .bird-cage > [class*="span"] .big-bc {
-    left: -30px;
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
@@ -449,64 +510,40 @@ body.logged-in {
   .uneditable-input {
     margin-left: 0;
   }
-  input.span12,
-  textarea.span12,
-  .uneditable-input.span12 {
+  input.span12, textarea.span12, .uneditable-input.span12 {
     width: 714px;
   }
-  input.span11,
-  textarea.span11,
-  .uneditable-input.span11 {
+  input.span11, textarea.span11, .uneditable-input.span11 {
     width: 652px;
   }
-  input.span10,
-  textarea.span10,
-  .uneditable-input.span10 {
+  input.span10, textarea.span10, .uneditable-input.span10 {
     width: 590px;
   }
-  input.span9,
-  textarea.span9,
-  .uneditable-input.span9 {
+  input.span9, textarea.span9, .uneditable-input.span9 {
     width: 528px;
   }
-  input.span8,
-  textarea.span8,
-  .uneditable-input.span8 {
+  input.span8, textarea.span8, .uneditable-input.span8 {
     width: 466px;
   }
-  input.span7,
-  textarea.span7,
-  .uneditable-input.span7 {
+  input.span7, textarea.span7, .uneditable-input.span7 {
     width: 404px;
   }
-  input.span6,
-  textarea.span6,
-  .uneditable-input.span6 {
+  input.span6, textarea.span6, .uneditable-input.span6 {
     width: 342px;
   }
-  input.span5,
-  textarea.span5,
-  .uneditable-input.span5 {
+  input.span5, textarea.span5, .uneditable-input.span5 {
     width: 280px;
   }
-  input.span4,
-  textarea.span4,
-  .uneditable-input.span4 {
+  input.span4, textarea.span4, .uneditable-input.span4 {
     width: 218px;
   }
-  input.span3,
-  textarea.span3,
-  .uneditable-input.span3 {
+  input.span3, textarea.span3, .uneditable-input.span3 {
     width: 156px;
   }
-  input.span2,
-  textarea.span2,
-  .uneditable-input.span2 {
+  input.span2, textarea.span2, .uneditable-input.span2 {
     width: 94px;
   }
-  input.span1,
-  textarea.span1,
-  .uneditable-input.span1 {
+  input.span1, textarea.span1, .uneditable-input.span1 {
     width: 32px;
   }
 }
@@ -514,15 +551,29 @@ body.logged-in {
   body {
     padding-top: 0;
   }
-  body body.logged-in {
-    padding-top: 0;
+
+
+	body.logged-in {
+		padding-top: 0;
+
+		.navbar {
+			margin-top: 0;
+		}
+}
+  
+  .article-wrapper#home
+  {
+  	background: url(../images/home-bg-tablets.jpg) no-repeat top center;
+  	margin-top: 0px;
+/*  	-webkit-background-size: auto auto;
+	background-size: auto auto;*/
   }
-  body body.logged-in .navbar {
-    margin-top: 0;
+  .tagline
+  {
+  	padding-left: 0
   }
   .navbar-fixed-top {
-    /* position: static;*/
-  
+   /* position: static;*/
     margin-bottom: 18px;
   }
   .navbar-fixed-top .navbar-inner {
@@ -530,7 +581,7 @@ body.logged-in {
   }
   .navbar .container {
     width: auto;
-    padding: 0 20px;
+    padding: 0;
   }
   .navbar .brand {
     padding-left: 10px;
@@ -538,8 +589,12 @@ body.logged-in {
     margin: 0 0 0 -5px;
   }
   .navbar .nav-collapse {
-    /* clear: left;*/
+   /* clear: left;*/
+  }
   
+  .navbar .nav-collapse a.home
+  {
+  	display: none;
   }
   .navbar .nav {
     float: none;
@@ -563,10 +618,9 @@ body.logged-in {
     padding: 6px 15px;
     font-weight: bold;
     color: #999999;
-    /*    -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;*/
-  
+/*    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;*/
   }
   .navbar .dropdown-menu li + li a {
     margin-bottom: 2px;
@@ -626,14 +680,6 @@ body.logged-in {
     overflow: hidden;
     height: 0;
   }
-  .article-wrapper#home {
-    background: url(../images/home-bg-tablets.jpg) no-repeat top center;
-    margin-top: 0px;
-  }
-  .article-wrapper#issue {
-    background: url(../images/issue-bg-tablets.jpg) no-repeat top center;
-    margin-top: 0px;
-  }
 }
 @media (min-width: 980px) {
   .nav-collapse.collapse {
@@ -641,6 +687,8 @@ body.logged-in {
     overflow: visible !important;
   }
 }
+
+// Large desktop
 @media (min-width: 1200px) {
   .row {
     margin-left: -30px;
@@ -795,64 +843,40 @@ body.logged-in {
   .uneditable-input {
     margin-left: 0;
   }
-  input.span12,
-  textarea.span12,
-  .uneditable-input.span12 {
+  input.span12, textarea.span12, .uneditable-input.span12 {
     width: 1160px;
   }
-  input.span11,
-  textarea.span11,
-  .uneditable-input.span11 {
+  input.span11, textarea.span11, .uneditable-input.span11 {
     width: 1060px;
   }
-  input.span10,
-  textarea.span10,
-  .uneditable-input.span10 {
+  input.span10, textarea.span10, .uneditable-input.span10 {
     width: 960px;
   }
-  input.span9,
-  textarea.span9,
-  .uneditable-input.span9 {
+  input.span9, textarea.span9, .uneditable-input.span9 {
     width: 860px;
   }
-  input.span8,
-  textarea.span8,
-  .uneditable-input.span8 {
+  input.span8, textarea.span8, .uneditable-input.span8 {
     width: 760px;
   }
-  input.span7,
-  textarea.span7,
-  .uneditable-input.span7 {
+  input.span7, textarea.span7, .uneditable-input.span7 {
     width: 660px;
   }
-  input.span6,
-  textarea.span6,
-  .uneditable-input.span6 {
+  input.span6, textarea.span6, .uneditable-input.span6 {
     width: 560px;
   }
-  input.span5,
-  textarea.span5,
-  .uneditable-input.span5 {
+  input.span5, textarea.span5, .uneditable-input.span5 {
     width: 460px;
   }
-  input.span4,
-  textarea.span4,
-  .uneditable-input.span4 {
+  input.span4, textarea.span4, .uneditable-input.span4 {
     width: 360px;
   }
-  input.span3,
-  textarea.span3,
-  .uneditable-input.span3 {
+  input.span3, textarea.span3, .uneditable-input.span3 {
     width: 260px;
   }
-  input.span2,
-  textarea.span2,
-  .uneditable-input.span2 {
+  input.span2, textarea.span2, .uneditable-input.span2 {
     width: 160px;
   }
-  input.span1,
-  textarea.span1,
-  .uneditable-input.span1 {
+  input.span1, textarea.span1, .uneditable-input.span1 {
     width: 60px;
   }
   .thumbnails {

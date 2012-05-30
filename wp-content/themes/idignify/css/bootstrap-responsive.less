@@ -1,7 +1,3 @@
-/*html {
-overflow-y: hidden;
-}
-*/
 /*!
  * Bootstrap Responsive v2.0.2
  *
@@ -11,10 +7,15 @@ overflow-y: hidden;
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+ 
+body.logged-in
+{
+	padding-top: 0;
+}
 .clearfix {
   *zoom: 1;
 }
-.clearfix:before, 
+.clearfix:before,
 .clearfix:after {
   display: table;
   content: "";
@@ -62,6 +63,8 @@ overflow-y: hidden;
 .hidden-desktop {
   display: none;
 }
+
+// Landscape phone to portrait tablet
 @media (max-width: 767px) {
   .visible-phone {
     display: block;
@@ -76,6 +79,8 @@ overflow-y: hidden;
     display: none;
   }
 }
+
+// Portrait tablet to landscape and desktop
 @media (min-width: 768px) and (max-width: 979px) {
   .visible-tablet {
     display: block;
@@ -89,18 +94,9 @@ overflow-y: hidden;
   .visible-desktop {
     display: none;
   }
-  
-  .tablet > [class*="span"]{
-    float: none;
-    display: block;
-    width: auto;
-  }
-  
-  article#involved input[type="text"]
-  {
-  	width: 92px;
-  }
 }
+
+// Landscape phones and down
 @media (max-width: 480px) {
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
@@ -109,135 +105,10 @@ overflow-y: hidden;
     display: block;
     line-height: 18px;
   }
-.btn-navbar
-{
-	margin-right: 20px;
-}
-.navbar
-{
-	.brand
-	{
-		img
-		{
-			width: 120px;
-		}
-	}
-}
-
-.article-wrapper
-{
-	padding-top: 100px;
-}
-
-h1.tagline
-{
-	font-size: 38px;
-	display: none;
-	
-	span.smaller
-	{
-		font-size: 15px;
-	}
-	
-}
-  
-  h1
-  {
-  	font-size: 38px;
-  	line-height: 40px;
-  }
-
-article#home
-{
-	margin-top: 100px;
-	
-	.featured
-	{
-		bottom: 200px;
-		
-		a.btn
-		{
-			margin-right: 5px;
-		}
-		
-		img
-		{
-			display: inline;
-			float: left;
-			padding-right: 5px;
-			width: 32px;
-		}
-		
-		.span3
-		{
-			float: left;
-		}
-	}
-}
-
-article#about
-{	
-	p.bu
-	{
-		text-align: left;
-		
-		br
-		{
-			display: none;
-		}
-	}
-	
-	.big-sb
-	{
-		top: 0;
-		font-size: 20px;
-		padding: 18px 0;
-		line-height: 25px;
-	}
-}
-  
-  article#giving .offset1
-  {
-  	display: none;
-  }
-  
-  article#giving .trees
-  {
-  	padding: 0;
-  }
-  
-  article#giving p span
-  {
-  	display: block;
-  	margin-bottom: 10px;
-  }
-  
-  article#giving .paypal-logo 
-	{
-	margin-left: 0;
-	}
-	
-	article#involved .span8
-	{
-		width: 100%;
-	}
-	
-.article-wrapper#involved
-{
-	.big-bc
-	{
-		top: -183px;
-		left: 4%;
-	}
-}
   input[type="checkbox"],
   input[type="radio"] {
     border: 1px solid #ccc;
   }
-input
-{
-	display: block;
-}
   .form-horizontal .control-group > label {
     float: none;
     width: auto;
@@ -273,6 +144,136 @@ input
     position: static;
   }
 
+/* Custom */
+  .navbar
+{
+	.brand
+	{
+		img
+		{
+			width: 110px;
+		}
+	}
+}
+
+h1.tagline
+{
+	font-size: 38px;
+	padding: 0;
+	
+	span.smaller
+	{
+		font-size: 15px;
+	}
+}
+
+  h1
+  {
+  	font-size: 38px;
+  	line-height: 40px;
+  }
+
+.featured > [class*="span"] {
+float: left;
+margin: 0 20px !important;
+}
+
+article#about
+{	
+	p.bu
+	{
+		text-align: left;
+		
+		br
+		{
+			display: none;
+		}
+	}
+}
+
+article#giving
+{
+	.offset1
+	{
+		display: none;
+	}
+	
+	.trees
+	{
+		padding: 0;
+	}
+	
+	p span
+	{
+		display: block;
+		margin-bottom: 10px;
+	}
+	
+	.paypal-logo
+	{
+		margin-left: 0;
+	}
+}
+
+article#involved
+{
+	.span8
+	{
+		width: 100%;
+		margin-bottom: 100px;
+		margin-left: 0;
+	}
+	
+	span.and
+	{
+		display: none;
+	}
+	
+	.big-bc
+	{
+		top: -216px !important;
+		width: 100%;
+		
+		img
+		{
+			padding-left: 35px;
+		}
+	}
+	
+	.bird-cage > [class*="span"] {
+	float: none;
+	width: 100%;
+	}
+	
+	.petition
+	{
+		position: relative;
+		top: 85px;
+	}
+	
+	.together
+	{
+		position: relative;
+		top: 225px;
+		clear: none;
+	}
+}
+
+input[type="text"],
+input[type="email"]
+{
+	display: block;
+	width: 94% !important;
+}
+
+input[type="submit"]
+{
+	width: 100%;
+	max-width: 428px;
+	height: 36px;
+	margin-top: 5px;
+}
+
 footer
 {
 	p span img
@@ -286,29 +287,17 @@ footer
 	}
 }
 
-	span.legal
-	{
-		display: none;
-	}
+span.legal
+{
+	display: none;
+}
 }
 @media (max-width: 767px) {
-  body {
-    
-  }
   .navbar-fixed-top {
     margin-left: -20px;
     margin-right: -20px;
   }
 
-.navbar .brand
-{
-	padding: 0 20px 20px 20px;
-}
-
-.navbar .brand img
-{
-	margin-left: 20px;
-}
   .container {
     width: auto;
     padding: 0 20px;
@@ -348,6 +337,46 @@ footer
   .input-prepend input[class*="span"],
   .input-append input[class*="span"] {
     width: auto;
+  }
+  /* Custom */
+  .featured > [class*="span"] {
+    float: left;
+    margin: 0 105px;
+    
+    img
+    {
+    	margin-right: 5px;
+    }
+  }
+  
+  .big-sb
+  {
+  	top: 50px;
+  }
+  
+  .video-embed
+  {
+  	margin-top: 50px !important;
+  }
+  
+  .coins
+  {
+  	float: left !important;
+  	
+  	img
+  	{
+  		margin-right: 20px;
+  	}
+  }
+  
+   .bird-cage > [class*="span"] {
+    float: left;
+    width: 220px;
+    
+    .big-bc
+    {
+    	left: -30px;
+    }
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
@@ -544,27 +573,14 @@ footer
 @media (max-width: 979px) {
   body {
     padding-top: 0;
-  }
-
-
-	body.logged-in {
+    
+    body.logged-in {
 		padding-top: 0;
 
 		.navbar {
 			margin-top: 0;
-		}
-}
-  
-  .article-wrapper#home
-  {
-  	background: url(../images/home-bg-tablets.jpg) no-repeat top center;
-  	margin-top: 0px;
-/*  	-webkit-background-size: auto auto;
-	background-size: auto auto;*/
-  }
-  .tagline
-  {
-  	padding-left: 0
+		}	
+	}
   }
   .navbar-fixed-top {
    /* position: static;*/
@@ -575,7 +591,7 @@ footer
   }
   .navbar .container {
     width: auto;
-    padding: 0;
+    padding: 0 20px;
   }
   .navbar .brand {
     padding-left: 10px;
@@ -584,11 +600,6 @@ footer
   }
   .navbar .nav-collapse {
    /* clear: left;*/
-  }
-  
-  .navbar .nav-collapse a.home
-  {
-  	display: none;
   }
   .navbar .nav {
     float: none;
@@ -673,6 +684,17 @@ footer
   .nav-collapse {
     overflow: hidden;
     height: 0;
+  }
+   .article-wrapper#home
+  {
+  	background: url(../images/home-bg-tablets.jpg) no-repeat top center;
+  	margin-top: 0px;
+  }
+  
+ .article-wrapper#issue
+  {
+  	background: url(../images/issue-bg-tablets.jpg) no-repeat top center;
+  	margin-top: 0px;
   }
 }
 @media (min-width: 980px) {
