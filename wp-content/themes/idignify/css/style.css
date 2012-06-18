@@ -143,8 +143,6 @@ strong {
   height: 365px;
   color: #4fcbb5;
   background: url(../images/big-sb.png) no-repeat top center;
-  position: relative;
-  top: -50px;
 }
 /*.......................................................the issue section*/
 .article-wrapper#issue {

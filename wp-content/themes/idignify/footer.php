@@ -1,6 +1,6 @@
 	<footer>
 		<div class="container">
-			<p><span class="legal">&copy;<?php echo date('Y'); ?> iDignify.&nbsp;</span>Let's <strong>Free</strong> Someone Together
+			<p><span class="legal">&copy;<?php echo date('Y'); ?> I.Dignify&nbsp;</span>Let's <strong>Free</strong> Someone Together
 				<span>
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/posterous.png" width="23" height="23" alt="Posterous"></a>
 					<a href="http://www.facebook.com/idignify"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="8" height="16" alt="Facebook"></a>
