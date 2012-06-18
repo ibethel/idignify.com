@@ -393,6 +393,9 @@ input.btn {
   text-transform: uppercase;
   margin: 50px 0 25px 0;
 }
+.bu a {
+  color: #fff;
+}
 .small {
   font-size: 12px;
   text-transform: normal;
