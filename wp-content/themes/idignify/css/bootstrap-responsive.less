@@ -8,10 +8,6 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
  
-/*body.logged-in
-{
-	padding-top: 0;
-}*/
 .clearfix {
   *zoom: 1;
 }
@@ -145,6 +141,15 @@
   }
 
 /* Custom */
+body.logged-in
+{
+	padding-top: 0;
+}
+
+.article-wrapper
+{
+	padding-top: 80px;
+}
 .dn
 {
 	display: none;
@@ -163,11 +168,17 @@
 h1.tagline
 {
 	font-size: 38px;
+	line-height: 20px;
 	padding: 0;
 	
 	span.smaller
 	{
 		font-size: 15px;
+	}
+	
+	span.shift
+	{
+		left: 65px;
 	}
 }
 
@@ -176,10 +187,21 @@ h1.tagline
   	font-size: 38px;
   	line-height: 40px;
   }
+  
+.featured
+{
+	bottom: 130px;
+	
+	img.bubble
+	{
+		margin-right: 10px !important;
+	}
+}
 
 .featured > [class*="span"] {
 float: left;
-margin: 0 20px !important;
+margin: 0 30px !important;
+padding-bottom: 20px;
 }
 
 article#about
@@ -235,8 +257,9 @@ article#involved
 	
 	.big-bc
 	{
-		top: -216px !important;
+		top: -120px !important;
 		width: 100%;
+		margin-bottom: -50px !important;
 		
 		img
 		{
@@ -252,7 +275,7 @@ article#involved
 	.become
 	{
 		position: relative;
-		top: 80px;
+		top: 165px;
 	}
 	
 	.petition
