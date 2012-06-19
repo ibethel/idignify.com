@@ -137,6 +137,9 @@
     position: static;
   }
   /* Custom */
+  .dn {
+    display: none;
+  }
   .navbar .brand img {
     width: 115px;
   }
@@ -176,7 +179,7 @@
   }
   article#involved .span8 {
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     margin-left: 0;
   }
   article#involved span.and {
@@ -192,6 +195,10 @@
   article#involved .bird-cage > [class*="span"] {
     float: none;
     width: 100%;
+  }
+  article#involved .become {
+    position: relative;
+    top: 80px;
   }
   article#involved .petition {
     position: relative;
