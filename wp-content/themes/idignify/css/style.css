@@ -399,7 +399,7 @@ input.btn {
   text-transform: normal;
 }
 body.logged-in {
-  padding-top: 88px;
+  padding-top: 160px;
 }
 body.logged-in .navbar {
   margin-top: 28px;
