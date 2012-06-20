@@ -38,7 +38,8 @@
 	?></title>
 <meta name="author" content="Jesse Kade of Sharp Machine Media">
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scaleable=0">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /> 
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
 
 <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/icons/favicon.ico">
 <link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/images/icons/apple-touch-icon.png">
