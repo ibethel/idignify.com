@@ -7,6 +7,10 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+/* body.logged-in
+{
+	padding-top: 0;
+}*/
 .clearfix {
   *zoom: 1;
 }
@@ -90,6 +94,9 @@
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
   }
+  body.logged-in {
+    padding-top: 0;
+  }
   .page-header h1 small {
     display: block;
     line-height: 18px;
@@ -133,9 +140,6 @@
     position: static;
   }
   /* Custom */
-  body.logged-in {
-    padding-top: 0;
-  }
   .article-wrapper {
     padding-top: 80px;
   }
@@ -245,6 +249,9 @@
   }
 }
 @media (max-width: 767px) {
+  body.logged-in {
+    padding-top: 0;
+  }
   .navbar-fixed-top {
     margin-left: -20px;
     margin-right: -20px;
