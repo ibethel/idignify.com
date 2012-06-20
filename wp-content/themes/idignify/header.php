@@ -37,9 +37,7 @@
 
 	?></title>
 <meta name="author" content="Jesse Kade of Sharp Machine Media">
-<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /> 
-<!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
 
 <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/icons/favicon.ico">
 <link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/images/icons/apple-touch-icon.png">
@@ -71,7 +69,7 @@
 
 </head>
 
-<body <?php body_class(); ?> data-spy="scroll">
+<body <?php body_class(); ?> data-spy="scroll" data-target=".navbar">
 	<header>
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -84,10 +82,10 @@
 					<a class="brand" href="<?php bloginfo('url'); ?>/#home">
 						<img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="232" height="114" alt="Logo">
 					</a>
-					<div class="nav-collapse">
+					<div class="nav-collapse collapse">
 						<nav>
 							<ul class="nav">
-								<li class="active"><a href="#home" class="home">Home</a></li>
+								<li><a href="#home" class="home">Home</a></li>
 								<li><a href="#about" class="about">Who We Are</a></li>
 								<li><a href="#issue" class="issue">The Issue</a></li>
 								<li><a href="#giving" class="giving">Ways To Give</a></li>

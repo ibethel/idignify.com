@@ -11,7 +11,11 @@
 	</footer> 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/js/scrollspy.js" type="text/javascript" charset="utf-8"></script>
+<?php 
+	$firefox = strpos($_SERVER["HTTP_USER_AGENT"], 'Firefox') ? true : false;
+	if ($firefox != 'true'): ?>
+	<script src="<?php bloginfo('template_directory'); ?>/js/scrollspy.js" type="text/javascript" charset="utf-8"></script>
+<?php endif; ?>
 <script src="<?php bloginfo('template_directory'); ?>/js/plugins.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/script.js" type="text/javascript" charset="utf-8"></script>
 
