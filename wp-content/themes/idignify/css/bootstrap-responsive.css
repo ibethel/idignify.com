@@ -656,7 +656,7 @@
     padding-right: 10px;
   }
   .btn-navbar {
-    display: block;
+    display: none;
   }
   .nav-collapse {
     overflow: hidden;
