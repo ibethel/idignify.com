@@ -66,6 +66,7 @@
 		
 	wp_head();
 ?>
+
 </head>
 
 <body <?php body_class(); ?> data-spy="scroll">
