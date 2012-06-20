@@ -91,11 +91,14 @@
   }
 }
 @media (max-width: 560px) {
-  .nav-collapse {
-    -webkit-transform: translate3d(0, 0, 0);
-  }
   body.logged-in {
     padding-top: 0;
+  }
+  a.btn-navbar {
+    display: none;
+  }
+  .nav-collapse {
+    display: none;
   }
   .page-header h1 small {
     display: block;
