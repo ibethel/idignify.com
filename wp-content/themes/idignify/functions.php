@@ -1,5 +1,4 @@
 <?php
-include 'functions/need-help-dashboard-widget.php';
 include 'functions/customize-admin.php';
 
 /**
@@ -72,89 +71,6 @@ function smm_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Navigation', 'smm' ),
-	) );
-
-	// This theme allows users to set a custom background
-	add_custom_background();
-
-	// Your changeable header business starts here
-	if ( ! defined( 'HEADER_TEXTCOLOR' ) )
-		define( 'HEADER_TEXTCOLOR', '' );
-
-	// No CSS, just IMG call. The %s is a placeholder for the theme template directory URI.
-	if ( ! defined( 'HEADER_IMAGE' ) )
-		define( 'HEADER_IMAGE', '%s/images/headers/path.jpg' );
-
-	// The height and width of your custom header. You can hook into the theme's own filters to change these values.
-	// Add a filter to smm_header_image_width and smm_header_image_height to change these values.
-	define( 'HEADER_IMAGE_WIDTH', apply_filters( 'smm_header_image_width', 940 ) );
-	define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'smm_header_image_height', 198 ) );
-
-	// We'll be using post thumbnails for custom header images on posts and pages.
-	// We want them to be 940 pixels wide by 198 pixels tall.
-	// Larger images will be auto-cropped to fit, smaller ones will be ignored. See header.php.
-	set_post_thumbnail_size( HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true );
-
-	// Don't support text inside the header image.
-	if ( ! defined( 'NO_HEADER_TEXT' ) )
-		define( 'NO_HEADER_TEXT', true );
-
-	// Add a way for the custom header to be styled in the admin panel that controls
-	// custom headers. See smm_admin_header_style(), below.
-	add_custom_image_header( '', 'smm_admin_header_style' );
-
-	// ... and thus ends the changeable header business.
-
-	// Default custom headers packaged with the theme. %s is a placeholder for the theme template directory URI.
-	register_default_headers( array(
-		'berries' => array(
-			'url' => '%s/images/headers/berries.jpg',
-			'thumbnail_url' => '%s/images/headers/berries-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Berries', 'smm' )
-		),
-		'cherryblossom' => array(
-			'url' => '%s/images/headers/cherryblossoms.jpg',
-			'thumbnail_url' => '%s/images/headers/cherryblossoms-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Cherry Blossoms', 'smm' )
-		),
-		'concave' => array(
-			'url' => '%s/images/headers/concave.jpg',
-			'thumbnail_url' => '%s/images/headers/concave-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Concave', 'smm' )
-		),
-		'fern' => array(
-			'url' => '%s/images/headers/fern.jpg',
-			'thumbnail_url' => '%s/images/headers/fern-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Fern', 'smm' )
-		),
-		'forestfloor' => array(
-			'url' => '%s/images/headers/forestfloor.jpg',
-			'thumbnail_url' => '%s/images/headers/forestfloor-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Forest Floor', 'smm' )
-		),
-		'inkwell' => array(
-			'url' => '%s/images/headers/inkwell.jpg',
-			'thumbnail_url' => '%s/images/headers/inkwell-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Inkwell', 'smm' )
-		),
-		'path' => array(
-			'url' => '%s/images/headers/path.jpg',
-			'thumbnail_url' => '%s/images/headers/path-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Path', 'smm' )
-		),
-		'sunset' => array(
-			'url' => '%s/images/headers/sunset.jpg',
-			'thumbnail_url' => '%s/images/headers/sunset-thumbnail.jpg',
-			/* translators: header image description */
-			'description' => __( 'Sunset', 'smm' )
-		)
 	) );
 }
 endif;

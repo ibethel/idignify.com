@@ -40,7 +40,6 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /> 
 
 <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/icons/favicon.ico">
-<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/images/icons/apple-touch-icon.png">
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/fonts/embedded-fonts.css" type="text/css" media="screen">

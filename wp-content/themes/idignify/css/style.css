@@ -396,7 +396,7 @@ input.btn {
 }
 .small {
   font-size: 12px;
-  text-transform: normal;
+  text-transform: none;
 }
 body.logged-in {
   padding-top: 160px;
