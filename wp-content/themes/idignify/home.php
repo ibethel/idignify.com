@@ -7,7 +7,7 @@
 				<div class="row featured">
 					<div class="span3 offset3">
 						<img src="<?php bloginfo('template_directory'); ?>/images/speech-bubble.png" width="45" height="37" alt="Speech Bubble" class="bubble">
-						<a class="btn" href="http://idignify.posterous.com/">Latest News</a>
+						<a class="btn" href="http://idignify.wordpress.com/">Latest News</a>
 					</div>
 					<div class="span3">
 						<img src="<?php bloginfo('template_directory'); ?>/images/bird-cage.png" width="50" height="52" alt="Bird Cage" class="cage">
