@@ -46,6 +46,8 @@ define('BLC_FOR_EDITING', 'edit');
 define('BLC_FOR_PARSING', 'parse');
 define('BLC_FOR_DISPLAY', 'display');
 
+define('BLC_DATABASE_VERSION', 7);
+
 /***********************************************
 				Configuration
 ************************************************/
@@ -59,7 +61,7 @@ $blc_config_manager = new blcConfigurationManager(
 	'wsblc_options', 
 	//Initialize default settings
 	array(
-        'max_execution_time' => 5*60, 	//(in seconds) How long the worker instance may run, at most. 
+        'max_execution_time' => 7*60, 	//(in seconds) How long the worker instance may run, at most.
         'check_threshold' => 72, 		//(in hours) Check each link every 72 hours.
         
         'recheck_count' => 3, 			//How many times a broken link should be re-checked. 
@@ -79,10 +81,13 @@ $blc_config_manager = new blcConfigurationManager(
 		
 		'send_email_notifications' => true, //Whether to send the admin email notifications about broken links
 		'send_authors_email_notifications' => false, //Whether to send post authors notifications about broken links in their posts.
+		'notification_email_address' => '', //If set, send email notifications to this address instead of the admin.
 		'notification_schedule' => 'daily', //How often (at most) notifications will be sent. Possible values : 'daily', 'weekly'
 		'last_notification_sent' => 0,		//When the last email notification was sent (Unix timestamp)
+
+		'suggestions_enabled' => true,  //Whether to suggest alternative URLs for broken links.
 		
-		'server_load_limit' => 4,		//Stop parsing stuff & checking links if the 1-minute load average
+		'server_load_limit' => null,	//Stop parsing stuff & checking links if the 1-minute load average
 										//goes over this value. Only works on Linux servers. 0 = no limit.
 		'enable_load_limit' => true,	//Enable/disable load monitoring. 
 		
@@ -90,6 +95,7 @@ $blc_config_manager = new blcConfigurationManager(
         'enabled_post_statuses' => array('publish'), //Only check posts that match one of these statuses
         
         'autoexpand_widget' => true, 	//Autoexpand the Dashboard widget if broken links are detected
+		'dashboard_widget_capability' => 'edit_others_posts', //Only display the widget to users who have this capability
 		'show_link_count_bubble' => true, //Display a notification bubble in the menu when broken links are found
 		
 		'table_layout' => 'flexible',   //The layout of the link table. Possible values : 'classic', 'flexible'
@@ -106,8 +112,14 @@ $blc_config_manager = new blcConfigurationManager(
 		'highlight_permanent_failures' => false,//Highlight links that have appear to be permanently broken (in Tools -> Broken Links).
 		'failure_duration_threshold' => 3, 		//(days) Assume a link is permanently broken if it still hasn't 
 												//recovered after this many days.
-												
+		'logging_enabled' => false,
+		'log_file' => '',
+		'custom_log_file_enabled' => false,
+
 		'installation_complete' => false,
+		'installation_flag_cleared_on' => 0,
+		'installation_flag_set_on'   => 0,
+
 		'user_has_donated' => false,   //Whether the user has donated to the plugin.
 		'donation_flag_fixed' => false,
    )
@@ -120,7 +132,11 @@ $blc_config_manager = new blcConfigurationManager(
 include BLC_DIRECTORY . '/includes/logger.php';
 
 global $blclog;
-$blclog = new blcDummyLogger;
+if ($blc_config_manager->get('logging_enabled', false) && is_writable($blc_config_manager->get('log_file'))) {
+	$blclog = new blcFileLogger($blc_config_manager->get('log_file'));
+} else {
+	$blclog = new blcDummyLogger;
+}
 
 /*
 if ( defined('BLC_DEBUG') && constant('BLC_DEBUG') ){
@@ -252,7 +268,7 @@ add_filter('cron_schedules', 'blc_cron_schedules');
 function blc_activation_hook(){
 	require BLC_DIRECTORY . '/includes/activation.php';
 }
-register_activation_hook(plugin_basename(BLC_PLUGIN_FILE), 'blc_activation_hook');
+register_activation_hook(BLC_PLUGIN_FILE, 'blc_activation_hook');
 
 //Load the plugin if installed successfully
 if ( $blc_config_manager->options['installation_complete'] ){
@@ -265,12 +281,18 @@ if ( $blc_config_manager->options['installation_complete'] ){
 		}
 		$init_done = true;
 		
+		//Ensure the database is up to date
+		if ($blc_config_manager->options['current_db_version'] != BLC_DATABASE_VERSION) {
+			require_once BLC_DIRECTORY . '/includes/admin/db-upgrade.php';
+			blcDatabaseUpgrader::upgrade_database(); //Also updates the DB ver. in options['current_db_version'].
+		}
+		
 		//Load the base classes and utilities
 		require_once BLC_DIRECTORY . '/includes/links.php';
 		require_once BLC_DIRECTORY . '/includes/link-query.php';
 		require_once BLC_DIRECTORY . '/includes/instances.php';
 		require_once BLC_DIRECTORY . '/includes/utility-class.php';
-		
+
 		//Load the module subsystem
 		require_once BLC_DIRECTORY . '/includes/modules.php';
 		
@@ -300,19 +322,61 @@ if ( $blc_config_manager->options['installation_complete'] ){
 } else {
 	//Display installation errors (if any) on the Dashboard.
 	function blc_print_installation_errors(){
-		global $blc_config_manager;
+		global $blc_config_manager, $wpdb; /** @var wpdb $wpdb */
         if ( $blc_config_manager->options['installation_complete'] ) {
             return;
         }
-		$logger = new blcCachedOptionLogger('blc_installation_log');
-		$messages = array_merge(
-			array('<strong>' . __('Broken Link Checker installation failed. Try deactivating and then reactivating the plugin.', 'broken-link-checker') . '</strong>', '', '<em>Installation log follows :</em>'),
-			$logger->get_messages()
+
+		$messages = array(
+			'<strong>' . __('Broken Link Checker installation failed. Try deactivating and then reactivating the plugin.', 'broken-link-checker') . '</strong>',
 		);
+
+		if ( is_multisite() && is_plugin_active_for_network(plugin_basename(BLC_PLUGIN_FILE)) ) {
+			$messages[] = __('Please activate the plugin separately on each site. Network activation is not supported.', 'broken-link-checker');
+			$messages[] = '';
+		}
+
+		if ( ! $blc_config_manager->db_option_loaded ) {
+			$messages[] = sprintf(
+				'<strong>Failed to load plugin settings from the "%s" option.</strong>',
+				$blc_config_manager->option_name
+			);
+			$messages[] = '';
+
+			$serialized_config = $wpdb->get_var(
+				sprintf(
+					'SELECT option_value FROM `%s` WHERE option_name = "%s"',
+					$wpdb->options,
+					$blc_config_manager->option_name
+				)
+			);
+
+			if ( $serialized_config === null ) {
+				$messages[] = "Option doesn't exist in the {$wpdb->options} table.";
+			} else {
+				$messages[] = "Option exists in the {$wpdb->options} table and has the following value:";
+				$messages[] = '';
+				$messages[] = '<textarea cols="120" rows="20">' . htmlentities($serialized_config) . '</textarea>';
+			}
+
+		} else {
+			$logger = new blcCachedOptionLogger('blc_installation_log');
+			$messages = array_merge(
+				$messages,
+				array(
+					'installation_complete = ' . (isset($blc_config_manager->options['installation_complete']) ? intval($blc_config_manager->options['installation_complete']) : 'no value'),
+					'installation_flag_cleared_on = ' . $blc_config_manager->options['installation_flag_cleared_on'],
+					'installation_flag_set_on = ' . $blc_config_manager->options['installation_flag_set_on'],
+					'',
+					'<em>Installation log follows :</em>'
+				),
+				$logger->get_messages()
+			);
+		}
+
 		echo "<div class='error'><p>", implode("<br>\n", $messages), "</p></div>";
 	}
 	add_action('admin_notices', 'blc_print_installation_errors');
 }
 
 }
-?>

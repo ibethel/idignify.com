@@ -38,7 +38,7 @@ function youtube_embed_to_short_code( $content ) {
 	$old_regexp_ent = str_replace( '&amp;#0*58;', '&amp;#0*58;|&#0*58;', htmlspecialchars( $old_regexp, ENT_NOQUOTES ) );
 
 	//new code
-	$ifr_regexp = '!<iframe((?:\s+\w+="[^"]*")*?)\s+src="https?://(?:www\.)*youtube.com/embed/([^"]+)".*?</iframe>!i';
+	$ifr_regexp = '!<iframe((?:\s+\w+="[^"]*")*?)\s+src="(https?:)?//(?:www\.)*youtube.com/embed/([^"]+)".*?</iframe>!i';
 	$ifr_regexp_ent = str_replace( '&amp;#0*58;', '&amp;#0*58;|&#0*58;', htmlspecialchars( $ifr_regexp, ENT_NOQUOTES ) );
 
 	foreach ( array( 'regexp', 'regexp_ent', 'old_regexp', 'old_regexp_ent', 'ifr_regexp', 'ifr_regexp_ent' ) as $reg ) {
@@ -69,11 +69,11 @@ function youtube_embed_to_short_code( $content ) {
 				if ( $width && $height )
 					$wh = "&w=$width&h=$height";
 
-				$url = esc_url_raw( "http://www.youtube.com/watch?v={$match[2]}{$wh}" );
+				$url = esc_url_raw( set_url_scheme( "http://www.youtube.com/watch?v={$match[3]}{$wh}" ) );
 			} else {
 				$match[1] = str_replace( '?', '&', $match[1] );
 
-				$url = esc_url_raw( 'http://www.youtube.com/watch?v=' . html_entity_decode( $match[1] ) );
+				$url = esc_url_raw( set_url_scheme( "http://www.youtube.com/watch?v=" . html_entity_decode( $match[1] ) ) );
 			}
 
 			$content = str_replace( $match[0], "[youtube $url]", $content );
@@ -94,7 +94,7 @@ add_filter('pre_kses', 'youtube_embed_to_short_code');
  * @return string The content with embeds instead of URLs
  */
 function youtube_link( $content ) {
-	return preg_replace_callback( '!(?:\n|\A)http://(?:www\.)?(?:youtube.com/(?:v/|watch[/\#?])|youtu\.be/)[^\s]+?(?:\n|\Z)!i', 'youtube_link_callback', $content );
+	return preg_replace_callback( '!(?:\n|\A)https?://(?:www\.)?(?:youtube.com/(?:v/|playlist|watch[/\#?])|youtu\.be/)[^\s]+?(?:\n|\Z)!i', 'youtube_link_callback', $content );
 }
 
 /**
@@ -111,10 +111,11 @@ function youtube_link_callback( $matches ) {
  * @param string $url
  * @return string The normalized URL
  */
+if ( !function_exists( 'youtube_sanitize_url' ) ) :
 function youtube_sanitize_url( $url ) {
 	$url = trim( $url, ' "' );
 	$url = trim( $url );
-	$url = str_replace( array( 'youtu.be/', '/v/', '#!v=', '&amp;', '&#038;' ), array( 'youtu.be/?v=', '/?v=', '?v=', '&', '&' ), $url );
+	$url = str_replace( array( 'youtu.be/', '/v/', '#!v=', '&amp;', '&#038;', 'playlist' ), array( 'youtu.be/?v=', '/?v=', '?v=', '&', '&', 'videoseries' ), $url );
 
 	// Replace any extra question marks with ampersands - the result of a URL like "http://www.youtube.com/v/9FhMMmqzbD8?fs=1&hl=en_US" being passed in.
 	$query_string_start = strpos( $url, "?" );
@@ -125,9 +126,11 @@ function youtube_sanitize_url( $url ) {
 
 	return $url;
 }
+endif;
 
 /*
  * url can be:
+ *    http://www.youtube.com/embed/videoseries?list=PL94269DA08231042B&amp;hl=en_US
  *    http://www.youtube.com/watch#!v=H2Ncxw1xfck
  *    http://www.youtube.com/watch?v=H2Ncxw1xfck
  *    http://www.youtube.com/watch?v=H2Ncxw1xfck&w=320&h=240&fmt=1&rel=0&showsearch=1&hd=0
@@ -136,31 +139,11 @@ function youtube_sanitize_url( $url ) {
  *    http://youtu.be/Rrohlqeir5E
  */
 
-function get_youtube_id( $url ) {
-	$url = youtube_sanitize_url( $url );
-	$url = parse_url( $url );
-
-	if ( ! isset( $url['query'] ) )
-		return false;
-
-	parse_str( $url['query'], $qargs );
-
-	if ( ! isset( $qargs['v'] ) )
-		return false;
-
-	$id = preg_replace( '|[^_a-z0-9-]|i', '', $qargs['v'] );
-
-	return $id;
-}
-
 /**
  * Converts a YouTube URL into an embedded YouTube video.
  */
 function youtube_id( $url ) {
-	if ( apply_filters( 'jetpack_bail_on_shortcode', false, 'youtube' ) )
-		return '';
-
-	if ( ! $id = get_youtube_id( $url ) )
+	if ( ! $id = jetpack_get_youtube_id( $url ) )
 		return '<!--YouTube Error: bad URL entered-->';
 
 	$url = youtube_sanitize_url( $url );
@@ -169,13 +152,14 @@ function youtube_id( $url ) {
 	if ( ! isset( $url['query'] ) )
 		return false;
 
-	parse_str( $url['query'], $qargs );
+	if ( isset( $url['fragment'] ) ) {
+		wp_parse_str( $url['fragment'], $fargs );
+	} else {
+		$fargs = array();
+	}
+	wp_parse_str( $url['query'], $qargs );
 
-	$agent = $_SERVER['HTTP_USER_AGENT'];
-	// Bloglines & Google Reader handle YouTube well now, instead of
-	// big blank space of yester year, so they can skip this treatment
-	if ( is_feed() && ! preg_match( '#' . apply_filters( 'jetpack_shortcode_youtube_whitelist_user_agents', 'Bloglines|FeedFetcher-Google|feedburner' ) . '#i', $agent ) )
-		return '<span style="text-align:center; display: block;"><a href="' . get_permalink() . '"><img src="http://img.youtube.com/vi/' . $id . '/2.jpg" alt="" /></a></span>';
+	$qargs = array_merge( $fargs, $qargs );
 
 	// calculate the width and height, taking content_width into consideration
 	global $content_width;
@@ -224,10 +208,45 @@ function youtube_id( $url ) {
 	$iv =     ( isset( $qargs['iv_load_policy'] ) && 3 == $qargs['iv_load_policy'] ) ? 3 : 1;
 
 	$fmt =    ( isset( $qargs['fmt'] )            && intval( $qargs['fmt'] )       ) ? '&fmt=' . (int) $qargs['fmt']     : '';
-	$start =  ( isset( $qargs['start'] )          && intval( $qargs['start'] )     ) ? '&start=' . (int) $qargs['start'] : '';
+
+	$start = 0;
+	if ( isset( $qargs['start'] ) ) {
+		$start = intval( $qargs['start'] );
+	} else if ( isset( $qargs['t'] ) ) {
+		$time_pieces = preg_split( '/(?<=\D)(?=\d+)/', $qargs['t'] );
+
+		foreach ( $time_pieces as $time_piece ) {
+			$int = (int) $time_piece;
+			switch ( substr( $time_piece, -1 ) ) {
+			case 'h' :
+				$start += $int * 3600;
+				break;
+			case 'm' :
+				$start += $int * 60;
+				break;
+			case 's' :
+				$start += $int;
+				break;
+			}
+		}
+	}
+
+	$start = $start ? '&start=' . $start : '';
+	$end =    ( isset( $qargs['end'] )            && intval( $qargs['end'] )       ) ? '&end=' . (int) $qargs['end']     : '';
 	$hd =     ( isset( $qargs['hd'] )             && intval( $qargs['hd'] )        ) ? '&hd=' . (int) $qargs['hd']       : '';
+	
+	$vq =     ( isset( $qargs['vq'] )             && in_array( $qargs['vq'], array('hd720','hd1080') ) ) ? '&vq=' . $qargs['vq'] : '';
+	
+	$cc = ( isset( $qargs['cc_load_policy'] ) ) ? '&cc_load_policy=1' : '';
+	$cc_lang = ( isset( $qargs['cc_lang_pref'] )   ) ? '&cc_lang_pref=' . preg_replace( '/[^_a-z0-9-]/i', '', $qargs['cc_lang_pref'] ) : '';
 
 	$wmode =  ( isset( $qargs['wmode'] ) && in_array( strtolower( $qargs['wmode'] ), array( 'opaque', 'window', 'transparent' ) ) ) ? $qargs['wmode'] : 'transparent';
+	
+	$theme =  ( isset( $qargs['theme'] ) && in_array( strtolower( $qargs['theme'] ), array( 'dark', 'light' ) ) ) ? '&theme=' . $qargs['theme'] : '';
+
+	$autoplay = '';
+	if ( apply_filters( 'jetpack_youtube_allow_autoplay', false ) && isset( $qargs['autoplay'] ) )
+		$autoplay = '&autoplay=' . (int)$qargs['autoplay'];
 
 	$alignmentcss = 'text-align:center;';
 	if ( isset( $qargs['align'] ) ) {
@@ -241,7 +260,12 @@ function youtube_id( $url ) {
 		}
 	}
 
-	$html = "<span class='embed-youtube' style='$alignmentcss display: block;'><iframe class='youtube-player' type='text/html' width='$w' height='$h' src='" . esc_url( "http://www.youtube.com/embed/$id?version=3&rel=$rel&fs=1$fmt&showsearch=$search&showinfo=$info&iv_load_policy=$iv$start$hd&wmode=$wmode" ) . "' frameborder='0'></iframe></span>";
+	if ( ( isset( $url['path'] ) && '/videoseries' == $url['path'] ) || isset( $qargs['list'] ) ) {
+		$html = "<span class='embed-youtube' style='$alignmentcss display: block;'><iframe class='youtube-player' type='text/html' width='$w' height='$h' src='" . esc_url( set_url_scheme( "http://www.youtube.com/embed/videoseries?list=$id&hl=en_US" ) ) . "' frameborder='0' allowfullscreen='true'></iframe></span>";
+	} else {
+		$html = "<span class='embed-youtube' style='$alignmentcss display: block;'><iframe class='youtube-player' type='text/html' width='$w' height='$h' src='" . esc_url( set_url_scheme( "http://www.youtube.com/embed/$id?version=3&rel=$rel&fs=1$fmt&showsearch=$search&showinfo=$info&iv_load_policy=$iv$start$end$hd&wmode=$wmode$theme$autoplay{$cc}{$cc_lang}" ) ) . "' frameborder='0' allowfullscreen='true'></iframe></span>";
+	}
+
 	$html = apply_filters( 'video_embed_html', $html );
 
 	return $html;
@@ -262,12 +286,15 @@ function wpcom_youtube_embed_crazy_url( $matches, $attr, $url ) {
 }
 
 function wpcom_youtube_embed_crazy_url_init() {
-	wp_embed_register_handler( 'wpcom_youtube_embed_crazy_url', '#http://(?:www\.)?(?:youtube.com/(?:v/|watch[/\#?])|youtu\.be/).*#i', 'wpcom_youtube_embed_crazy_url' );
+	wp_embed_register_handler( 'wpcom_youtube_embed_crazy_url', '#https?://(?:www\.)?(?:youtube.com/(?:v/|playlist|watch[/\#?])|youtu\.be/).*#i', 'wpcom_youtube_embed_crazy_url' );
 }
 
 add_action( 'init', 'wpcom_youtube_embed_crazy_url_init' );
 
-// higher priority because we need it before auto-link and autop get to it
-if ( get_option('embed_autourls') ) {
-	add_filter( 'comment_text', 'youtube_link', 1 );
+if ( apply_filters( 'jetpack_comments_allow_oembed', get_option('embed_autourls') ) ) {
+	// We attach wp_kses_post to comment_text in default-filters.php with priority of 10 anyway, so the iframe gets filtered out.
+	if ( ! is_admin() ) {
+		// Higher priority because we need it before auto-link and autop get to it
+		add_filter( 'comment_text', 'youtube_link', 1 );
+	}
 }

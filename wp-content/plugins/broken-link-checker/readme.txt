@@ -3,8 +3,8 @@ Contributors: whiteshadow
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A6P9S6CE3SRSW
 Tags: links, broken, maintenance, blogroll, custom fields, admin, comments, posts
 Requires at least: 3.2
-Tested up to: 3.4-beta4
-Stable tag: 1.5.5
+Tested up to: 4.0
+Stable tag: 1.9.5
 
 This plugin will check your posts, comments and other content for broken links and missing images, and notify you if any are found. 
 
@@ -37,39 +37,47 @@ There are several actions associated with each link. They show up when you move 
 * "Edit URL" lets you change the URL of that link. If the link is present in more than one place (e.g. both in a post and in the blogroll), all occurrences of that URL will be changed.
 * "Unlink" removes the link but leaves the link text intact.
 * "Not broken" lets you manually mark a "broken" link as working. This is useful if you know it was incorrectly detected as broken due to a network glitch or a bug. The marked link will still be checked periodically, but the plugin won't consider it broken unless it gets a new result.
+* "Dismiss" hides the link from the "Broken Links" and "Redirects" views. It will still be checked as normal and get the normal link styles (e.g. a strike-through effect for broken links), but won't be reported again unless its status changes. Useful if you want to acknowledge a link as broken/redirected and just leave as it is.
 
 You can also click on the contents of the "Status" or "Link Text" columns to get more info about the status of each link.
 
 **Translations**
 
+* Arabic - Yaser Maadan
 * Belorussian - [M. Comfi](http://www.comfi.com/)
-* Bulgarian - [Ajoft Technologes](http://www.ajoft.com/)
-* Chinese Simplified - [Hank Yang](http://wenzhu.org/)
+* Chinese Simplified - Kaijia Feng
 * Chinese Traditional - [YILIN](http://sh2153.com)
 * Czech - [Lelkoun](http://lelkoun.cz/)
 * Danish - [Georg S. Adamsen](http://wordpress.blogos.dk/)
-* Dutch - [Gideon van Melle](http://www.gvmelle.com/)
-* French - [Whiler](http://blogs.wittwer.fr/whiler/)
+* Dutch - [Robin Roelofsen](http://www.dreamdesignsolutions.nl/)
+* Finnish - [Jani Alha](http://www.wysiwyg.fi)
+* French - [Whiler](http://blogs.wittwer.fr/whiler/), Luc Capronnier, [Guillaume Boda](http://www.michtoblog.com/)
 * German - [Ivan Graf](http://blog.bildergallery.com/)
+* Hebrew - [Eitan Caspi](http://caspi.org.il/)
 * Hindi - [Outshine Solutions](http://outshinesolutions.com/)
+* Hungarian - [Language Connect](http://www.languageconnect.net/)
 * Irish - [Ray Gren](http://letsbefamous.com/)
 * Italian - [Gianni Diurno](http://gidibao.net/index.php/portfolio/) and [Giacomo Ross](http://www.luxemozione.com/) (alternative)
-* Japanese - [ningendesu](http://ningendesu.com/)
+* Japanese - [Shohei Tanak](http://artisanworkshop.biz/)
 * Korean - [MinHyeong Lim](http://ssamture.net/)
 * Persian - [Omid Sheerkavand](http://qanal.ir/)
 * Polish - [http://positionmaker.pl](http://positionmaker.pl/)
-* Portuguese - [PedroDM](http://development.mowster.net/)
+* Portuguese - [mowster](http://wordpress.mowster.net/)
+* Brazilian Portuguese - [Paulino Michelazzo](http://www.michelazzo.com.br/)
 * Romanian - [Ovidiu](http://www.jibo.ro)
 * Russian - [Anna Ozeritskaya](http://hweia.ru/)
+* Serbo-Croatian - [Borisa Djuraskovic](http://www.webhostinghub.com)
+* Slovakian - [Patrik Å½ec](http://patwist.com/)
 * Spanish - [Neoshinji](http://blog.tuayudainformatica.com/traducciones-de-plugins-wordpress/)
 * Turkish - [Murat Durgun](http://www.lanwifi.net/)
 * Ukrainian - [Stas Mykhajlyuk](http://www.kosivart.com/)
+* Vietnamese - [Biz.O](http://bizover.net/)
 
 *Note: Some translations are not entirely up to date with the latest release, so parts of the interface may appear untranslated.*
 
 **Other Credits**
 
-This plugin uses one or more icons from the beautiful ["Silk" icon set](http://www.famfamfam.com/lab/icons/silk/).
+This plugin uses some icons from the [Font Awesome icon font](http://fortawesome.github.io/Font-Awesome/). Font Awesome is licensed under SIL OFL 1.1.
 
 == Installation ==
 
@@ -89,6 +97,146 @@ To upgrade your installation
 1. Reactivate the plugin. Your settings will be retained from the previous version.
 
 == Changelog ==
+
+= 1.9.5 =
+* Fixed missing YouTube videos not being detected when the video URL starts with https instead of http.
+* Enabled the YouTube video checker by default on new installations.
+* Made the "dismiss link" option more permanent. Instead of restoring a dismissed link if the redirect URL changes even a little bit, the plugin will now ignore query string changes. This should fix many of the reports about dismissed links reappearing for no apparent reason.
+* Updated Portuguese, German and Dutch translations.
+* Other minor fixes.
+
+= 1.9.4.2 =
+* Updated Dutch translation again.
+* Removed Bulgarian translation because it was poor quality and outdated.
+
+= 1.9.4.1 =
+* Updated Dutch translation.
+* Updated POT file.
+
+= 1.9.4 =
+* Tested on WP 4.0 beta.
+* Added a Serbo-Croatian translation.
+* Added a Slovakian translation.
+* Replaced the old Japanese translation with a new and more up-to-date version from a different translator.
+* Updated Dutch, German, Polish, Hebrew and other translations.
+* Fixed a notice about undefined index "status_text".
+* Fixed a "doing it wrong" warning related to screen options.
+* Fixed spurious false positives on links copied from Word or similar editors.
+* Fixed view switcher appearance in WP 4.0.
+* Replaced the deprecated like_esc() function with $wpdb->esc_like() where available.
+* Fixed plaintext URLs not being detected if they're the very first thing in a post.
+* Fixed a bug that caused quotes and other special characters in the broken link CSS and removed link CSS fields to be auto-escaped with a slash, potentially breaking the CSS.
+* Fixed a bug that caused the "check custom fields" feature work inconsistently or not at all on custom post types.
+* Fixed duplicate custom field links showing up when the user creates a revision with different field values.
+* Fixed a specific type of false positive where some links would get flagged as "Unknown Error" and the log message would be "Empty reply from server".
+* Fixed a bug where only the first enabled post type would be resynchronized during plugin activation.
+* Added more logging.
+* Removed Megavideo and MegaUpload modules. These sites no longer exist.
+
+= 1.9.3 =
+* Tested on WP 3.8.1 and WP 3.9-beta2.
+* Added an option to sort links by link text. May produce unexpected results for links that have multiple copies with different anchor text.
+* Added a Vietnamese translation.
+* Added file-based logging for debugging purposes. Logging can be enabled in the "Advanced" section of the plugin settings page.
+* Added a "Auto-Submitted: auto-generated" header to notification emails sent by the plugin. This should prevent "out-of-office" auto-responders and similar software from responding to these emails.
+* Added domain-based rate limiting to the HTTP checker module.
+* Throttled background parsing by about 40% to reduce overall resource usage.
+* Fixed (probably) a long-standing bug related to encoding international characters in link URLs.
+* Fixed a typo in the Polish translation.
+* Made the error message that's displayed when trying to network-activate the plugin more useful.
+
+= 1.9.2 =
+* Fixed several UI/layout issues related to the new WP 3.8 admin style.
+* Fixed HTML entity codes showing up in confirmation messages in when running a localized version of WP (only affects some languages).
+* Fixed the "dismiss this notice" link URL not being HTML-escaped.
+* Fixed a couple of cross-site scripting vulnerabilities related to the sort direction query argument not being properly validated and the bulk action form not escaping the current URL.
+* Updated Hebrew translation.
+* Updated French translation.
+* When you dismiss a link, the dismissed link counter is now updated right away instead of on page reload.
+
+= 1.9.1 =
+* Updated Dutch, German, Chinese and Portuguese translations.
+* Fixed suggestions not working on sites that force HTTPS in the WordPress admin.
+* Tested on WordPress 3.7.
+
+= 1.9 =
+* Added the ability to edit link text from inside the plugin. This features is only available for certain types of links.
+* Added a "suggestions" feature. When you go to edit a broken link, the plugin will now suggest replacing it with an archived page from the Wayback Machine (if available). You can disable suggestions in Settings -> Link Checker -> General.
+* Added a Hebrew translation.
+* Added support for HTML code in custom fields. To make the plugin treat a field as HTML, prefix its name with "html:" in BLC settings. For example, if you have a custom field named "foo" that contains HTML, enter it as "html:foo".
+* Fixed: The "Status" column is now properly updated when editing a link.
+* Fixed: Visual feedback when a link is successfully edited. Basically, it briefly changes the row background to green.
+* Fixed: Email notifications will only include the "see all broken links here" link if the recipient can actually access that link.
+* Fixed some UI labels not being localizable.
+* The "Undismiss" action is now displayed in all views instead of only the "Dismissed" view. This way you can tell if a broken link has been dismissed without having to search the "Dismissed" list.
+* Added information about the last email notification sent to debug info. It's accessible by clicking "show debug info" on the plugin settings page.
+
+= 1.8.3 =
+* Added a Hungarian translation.
+* Fixed a bunch of "deprecated function" notices that showed up due to wpdb::escape() becoming deprecated in WP 3.6.
+* Fixed a vulnerability that would allow users with the ability to bulk-edit links to execute arbitrary PHP code by using a specially crafted regex as the search string.
+* Updated German translation.
+* Replaced the old Dutch translation with a new and more complete translation by Robin Roelofsen.
+
+= 1.8.2 =
+* Removed one of the translator credits links because Google flagged it as "suspicious".
+* Updated French translation.
+* Updated Polish translation.
+* Fixed several field size and layout issues that made the search form display incorrectly in Firefox.
+
+= 1.8.1 =
+* Updated the Polish and Simplified Chinese translations.
+* Updated the German translation.
+* Added translation strings for two modules that were missing them.
+* Replaced a number of icons with GPL-compatible alternatives from Font Awesome.
+* Removed some unused images.
+
+= 1.8 =
+* Added an option to only show the dashboard widget for users with the Administrator role, or to disable it completely.
+* Added a way to change the notification email address.
+* Added support for Smart YouTube "httpv://" links.
+* Added support for protocol-relative URLs (for example, "//example.com/").
+* Added support for checking YouTube playlists.
+* Added a Brazilian Portuguese (pt-BR) translation.
+* Updated Chinese (Traditional) translation.
+* Switched over to storing plugin settings as JSON instead of serialized PHP arrays.
+* Improved error reporting in situations where the plugin can not load settings from the database.
+* Fixed: Display a more specific error message than just "update failed" when the plugin fails to modify a post. This only applies to WP 3.5+.
+* Fixed: Display the right URL for embedded YouTube playlists. Previously the plugin would show the same (incorrect) URL for all playlists.
+
+= 1.7.1 =
+* Added an Arabic translation.
+* Updated Portuguese translation.
+* Updated French translation.
+* Fixed MySQL errors caused by the plugin converting table names to lowercase.
+* Fixed a bug where the plugin would sometimes report broken Twitter links as working.
+* Fixed the plugin author URL.
+
+= 1.7 =
+* Added support for youtu.be shortlinks.
+* Added a Finnish translation.
+* Fixed a graphical bug where the currently selected settings tab would not be highlighted in WordPress 3.5.
+* Removed the "Blogroll items" module from the list of link containers enabled by default. The WordPress developer team is planning to remove Link Manager from core, and the "Links" menu will be hidden by default in new WP 3.5 installs.
+* Removed the Admin Menu Editor Pro ad from the "Settings -> Link Checker" and the "Tools -> Broken Links" pages. 
+* Disabled the news link (if any) for users who have donated.
+* Removed support for pre-WP 2.9 post meta actions.
+* Minor styling changes of screen meta links.
+* Updated Danish, Germa, Italian, French and Simplified Chinese translations.
+* Tested on WordPress 3.5.
+
+= 1.6.2 =
+* Another attempt to fix the "database not up to date" that some users are still experiencing even with 1.6.1.
+
+= 1.6.1 =
+* Fixed the "database not up to date" bug. Now the plugin should properly upgrade the DB.
+
+= 1.6 =
+* Added a way to dismiss links. Dismissed links don't show up in the "Broken" and "Redirects" lists, but are still checked as normal and get the normal link styles (e.g. strike-through for broken links). Useful if you want to, for example, acknowledge that a link is broken and leave it be.
+* Added a "Redirect URL" column. For redirects this will display the URL that the link redirects to. For normal, non-redirected links, it will be empty. This column is hidden by default. You can enable it in the "Screen Options" panel.
+* Updated French translation.
+* Tested on WP 3.4.1.
+* Replace the "More plugins..." link on the "Broken Links" page with a link to the Admin Menu Editor page. This link will be hidden for users who have donated.
+* A number of minor fixes.
 
 = 1.5.5 =
 * Fix broken image on the settings page.
@@ -315,7 +463,7 @@ To upgrade your installation
 * "Discard" gone, replaced by "Not broken".
 * "Exclude" gone from action links.
 * Better handling of false positives.
-* FTP, mailto:, javascript: and other links with unsupported protocols now show up in the “All links” list.
+* FTP, mailto:, javascript: and other links with unsupported protocols now show up in the ï¿½All linksï¿½ list.
 
 = 0.8.1 =
 * Updated Italian translation.
@@ -462,7 +610,7 @@ To upgrade your installation
 
 = 0.5 =
 * This is a near-complete rewrite with a lot of new features. 
-* See  http://w-shadow.com/blog/2009/05/22/broken-link-checker-05/ for details.
+* See ï¿½http://w-shadow.com/blog/2009/05/22/broken-link-checker-05/ for details.
 
 = 0.4.14 =
 * Fix false positives when the URL contains an #anchor
@@ -589,6 +737,12 @@ To upgrade your installation
 * *There are no release notes for this version*
 
 == Upgrade Notice ==
+
+= 1.9.2 =
+Fixes UI issues related to the new WP 3.8 admin style and a few security vulnerabilities.
+
+= 1.6.2 =
+Attempts to fix the "database not up to date" bug that some users are still experiencing with 1.6.1. If you have not encountered this bug, you can skip this update.
 
 = 1.4 =
 Adds an option to send post authors notifications about broken links in their posts and the the ability to sort links by URL, as well as a number of other updates and fixes.

@@ -20,6 +20,11 @@ class blcHTMLImage extends blcParser {
 	
 	//                    \1                        \2      \3 URL    \4
 	var $img_pattern = '/(<img[\s]+[^>]*src\s*=\s*)([\"\'])([^>]+?)\2([^<>]*>)/i';
+
+	/** @var string Used in link editing callbacks. */
+	private $old_url = '';
+	/** @var string */
+	private $new_url = '';
 	
   /**
    * Parse a string for HTML images - <img src="URL">
@@ -160,7 +165,7 @@ class blcHTMLImage extends blcParser {
 		
 		$image = sprintf(
 			'<img src="%s" class="blc-small-image" alt="%2$s" title="%2$s"> ',
-			esc_attr(plugins_url('/images/image.png', BLC_PLUGIN_FILE)),
+			esc_attr(plugins_url('/images/font-awesome/font-awesome-picture.png', BLC_PLUGIN_FILE)),
 			esc_attr($text)
 		);
 		
@@ -171,5 +176,3 @@ class blcHTMLImage extends blcParser {
 		return $text;
 	}
 }
-
-?>

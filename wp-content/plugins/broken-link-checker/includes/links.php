@@ -40,6 +40,8 @@ class blcLink {
 	
 	var $false_positive = false;
 	var $result_hash = '';
+
+	var $dismissed = false;
 	
 	var $status_text = '';
 	var $status_code = '';
@@ -104,7 +106,7 @@ class blcLink {
 	);
 	
 	function __construct($arg = null){
-		global $wpdb;
+		global $wpdb, $blclog; /** @var wpdb $wpdb  */
 		
 		$this->field_format = array(
 			'url' => '%s',
@@ -126,6 +128,7 @@ class blcLink {
 			'being_checked' => 'bool',
 		 	'status_text' => '%s',
 		 	'status_code' => '%s',
+			'dismissed' => 'bool',
 		);
 		
 		if (is_numeric($arg)){
@@ -136,18 +139,22 @@ class blcLink {
 			if ( is_array($arr) ){ //Loaded successfully
 				$this->set_values($arr);
 			} else {
-				//Link not found. The object is invalid. 
-				//I'd throw an error, but that wouldn't be PHP 4 compatible...	
+				//Link not found. The object is invalid.
+				//I'd throw an error, but that wouldn't be PHP 4 compatible...
+				$blclog->warn(__CLASS__ .':' . __FUNCTION__ . ' Link not found.', $arg);
 			}			
 			
 		} else if (is_string($arg)){
 			//Load a link with URL = $arg from the DB. Create a new one if the record isn't found.
+//			$blclog->debug(__CLASS__ .':' . __FUNCTION__ . ' Trying to load a link by URL:', $arg);
 			$q = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}blc_links WHERE url=%s LIMIT 1", $arg);
 			$arr = $wpdb->get_row( $q, ARRAY_A );
 			
 			if ( is_array($arr) ){ //Loaded successfully
+//				$blclog->debug(__CLASS__ .':' . __FUNCTION__ . ' Success!');
 				$this->set_values($arr);
 			} else { //Link not found, treat as new
+//				$blclog->debug(__CLASS__ .':' . __FUNCTION__ . ' Link not found.');
 				$this->url = $arg;
 				$this->is_new = true;
 			}			
@@ -201,7 +208,7 @@ class blcLink {
 		$this->last_check_attempt = time();
 		
 		/*
-		If the link is stil marked as in the process of being checked, that probably means
+		If the link is still marked as in the process of being checked, that probably means
 		that the last time the plugin tried to check it the script got terminated by PHP for 
 		running over the execution time limit or causing a fatal error.
 		
@@ -306,9 +313,21 @@ class blcLink {
    * @access private
    *
    * @param bool $broken
+   * @param string $new_result_hash
    * @return void
    */
-	function status_changed($broken, $new_result_hash = ''){
+	private function status_changed($broken, $new_result_hash = ''){
+		//If a link's status changes, un-dismiss it.
+		if ( $this->result_hash != $new_result_hash ) {
+			if ( $this->dismissed ) {
+				$this->log .= sprintf(
+					"Restoring a dismissed link. \nOld status: \n%s\nNew status: \n%s\n",
+					$this->result_hash,
+					$new_result_hash
+				);
+			}
+			$this->dismissed = false;
+		}
 		
 		if ( $this->false_positive && !empty($new_result_hash) ){
 			//If the link has been marked as a (probable) false positive, 
@@ -359,7 +378,7 @@ class blcLink {
    * @return bool True if saved successfully, false otherwise.
    */
 	function save(){
-		global $wpdb;
+		global $wpdb, $blclog; /** @var wpdb $wpdb */
 
 		if ( !$this->valid() ) return false;
 		
@@ -399,15 +418,18 @@ class blcLink {
 				implode(', ', array_values($values))
 			);
 			//FB::log($q, 'Link add query');
-			
+			$blclog->debug(__CLASS__ .':' . __FUNCTION__ . ' Adding a new link. SQL query:' . "\n", $q);
+
 			$rez = $wpdb->query($q) !== false;
 			
 			if ($rez){
 				$this->link_id = $wpdb->insert_id;
+				$blclog->debug(__CLASS__ .':' . __FUNCTION__ . ' Database record created. ID = ' . $this->link_id);
 				//FB::info($this->link_id, "Link added");
 				//If the link was successfully saved then it's no longer "new"
 				$this->is_new = false;
 			} else {
+				$blclog->error(__CLASS__ .':' . __FUNCTION__ . ' Error adding link', $this->url);
 				//FB::error($wpdb->last_error, "Error adding link {$this->url}");
 			}
 				
@@ -429,12 +451,14 @@ class blcLink {
 				intval($this->link_id)
 			);
 			//FB::log($q, 'Link update query');
+			$blclog->debug(__CLASS__ .':' . __FUNCTION__ . ' Updating a link. SQL query:'. "\n", $q);
 			
 			$rez = $wpdb->query($q) !== false;
-			
 			if ( $rez ){
 				//FB::log($this->link_id, "Link updated");
+				$blclog->debug(__CLASS__ .':' . __FUNCTION__ . ' Link updated.');
 			} else {
+				$blclog->error(__CLASS__ .':' . __FUNCTION__ . ' Error updating link', $this->url);
 				//FB::error($wpdb->last_error, "Error updating link {$this->url}");
 			}
 			
@@ -450,7 +474,7 @@ class blcLink {
    * @return array
    */
 	function to_db_format($values){
-		global $wpdb;
+		global $wpdb; /** @var wpdb $wpdb  */
 		
 		$dbvalues = array();
 		
@@ -550,6 +574,7 @@ class blcLink {
    * if all instances were edited successfully.   
    *
    * @param string $new_url
+   * @param string $new_text Optional.
    * @return array An associative array with these keys : 
    *   new_link_id - the database ID of the new link.
    *   new_link - the new link (an instance of blcLink).
@@ -557,7 +582,7 @@ class blcLink {
    *   cnt_error - the number of instances that caused problems.
    *   errors - an array of WP_Error objects corresponding to the failed edits.  
    */
-	function edit($new_url){
+	function edit($new_url, $new_text = null){
 		if ( !$this->valid() ){
 			return new WP_Error(
 				'link_invalid',
@@ -607,7 +632,7 @@ class blcLink {
 						__('Failed to create a DB entry for the new URL.', 'broken-link-checker')
 					)
 				)
-			);;
+			);
 		}
 		
 		$cnt_okay = $cnt_error = 0;
@@ -616,7 +641,7 @@ class blcLink {
 		//Edit each instance.
 		//FB::info('Editing ' . count($instances) . ' instances');
 		foreach ( $instances as $instance ){
-			$rez = $instance->edit( $new_url, $this->url ); 			
+			$rez = $instance->edit( $new_url, $this->url, $new_text );
 			if ( is_wp_error($rez) ){
 				$cnt_error++;
 				array_push($errors, $rez);
@@ -771,14 +796,15 @@ class blcLink {
 			'errors' => $errors,
 		); 
 	}
-	
-  /**
-   * Remove the link and (optionally) its instance records from the DB. Doesn't alter posts/etc.
-   *
-   * @return mixed 1 on success, 0 if link not found, false on error. 
-   */
+
+	/**
+	 * Remove the link and (optionally) its instance records from the DB. Doesn't alter posts/etc.
+	 *
+	 * @param bool $remove_instances
+	 * @return mixed 1 on success, 0 if link not found, false on error.
+	 */
 	function forget($remove_instances = true){
-		global $wpdb;
+		global $wpdb; /** @var wpdb $wpdb */
 		if ( !$this->valid() ) return false;
 		
 		if ( !empty($this->link_id) ){
@@ -805,10 +831,9 @@ class blcLink {
    *
    * @param bool $ignore_cache Don't use the internally cached instance list.
    * @param string $purpose 
-   * @return array An array of instance objects or FALSE on failure.
+   * @return blcLinkInstance[] An array of instance objects or FALSE on failure.
    */
 	function get_instances( $ignore_cache = false, $purpose = '' ){
-		global $wpdb;
 		if ( !$this->valid() || empty($this->link_id) ) return false;
 		
 		if ( $ignore_cache || is_null($this->_instances) ){
@@ -890,6 +915,16 @@ class blcLink {
 	function get_ascii_url(){
 		return blcUtility::idn_to_ascii($this->url);
 	}
+
+	/**
+	 * Remove the query string from an URL.
+	 *
+	 * @param string $url
+	 * @return string
+	 */
+	public static function remove_query_string($url) {
+		return preg_replace('@\?[^#]*?(#|$)@', '$1', $url);
+	}
 }
 
 } //class_exists
@@ -903,8 +938,9 @@ class blcLink {
 function blc_cleanup_links( $link_id = null ){
 	global $wpdb; /* @var wpdb $wpdb */
 	global $blclog;
-	
-	$q = "DELETE FROM {$wpdb->prefix}blc_links 
+
+	$start = microtime(true);
+	$q = "DELETE FROM {$wpdb->prefix}blc_links
 			USING {$wpdb->prefix}blc_links LEFT JOIN {$wpdb->prefix}blc_instances 
 				ON {$wpdb->prefix}blc_instances.link_id = {$wpdb->prefix}blc_links.link_id
 			WHERE
@@ -918,9 +954,9 @@ function blc_cleanup_links( $link_id = null ){
 	}
 	
 	$rez = $wpdb->query( $q );
-	$blclog->log(sprintf('... %d links deleted', $wpdb->rows_affected));
+	$elapsed = microtime(true) - $start;
+	$blclog->log(sprintf('... %d links deleted in %.3f seconds', $wpdb->rows_affected, $elapsed));
 	
 	return $rez !== false;	
 }
 
-?>

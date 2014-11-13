@@ -1,18 +1,20 @@
 === Display Widgets ===
 Contributors: sswells
 Donate link: http://strategy11.com/donate/
-Tags: widget, widgets, admin, show, hide, page, Thesis, sidebar, content, wpmu, wordpress, plugin, post, posts, content, filter, widget logic, widget context
-Requires at least: 2.8
-Tested up to: 3.2
-Stable tag: 1.22
+Tags: widget, widgets, admin, show, hide, page, sidebar, content, wpmu, wordpress, plugin, post, posts, content, filter, widget logic, widget context
+Requires at least: 3.1
+Tested up to: 3.8
+Stable tag: 2.03
 
 Simply hide widgets on specified pages. Adds checkboxes to each widget to either show or hide it on every site page.
 
 == Description ==
 
-Change your sidebar content with different pages. Avoid creating multiple sidebars and duplicating widgets by adding check boxes to each widget in the admin (as long as it is written in the WordPress version 2.8 format) which will either show or hide the widgets on every site page. Great for avoiding extra coding and keeping your sidebars clean. 
+Change your sidebar content for different pages, categories, custom taxonomies, and WPML languages. Avoid creating multiple sidebars and duplicating widgets by adding check boxes to each widget in the admin (as long as it is written in the WordPress version 2.8 format) which will either show or hide the widgets on every site page. Great for avoiding extra coding and keeping your sidebars clean. 
 
-By default, 'Hide on Checked' is selected with no boxes checked, so all current widgets will continue to display on all pages. 
+By default, 'Hide on checked pages' is selected with no boxes checked, so all current widgets will continue to display on all pages. 
+
+You can also find a development version where you can add translations and bug fixes on ([GitHub](https://github.com/stephywells/display-widgets "GitHub"))
 
 http://strategy11.com/display-widgets/
 
@@ -21,12 +23,15 @@ http://strategy11.com/display-widgets/
 * Bahasa Malaysian (Jass at 100webhosting.com)
 * Chinese ([Hanolex](http://hanolex.org "Hanolex"))
 * Dutch (Alanya Hotels)
+* French ([Fmarie](http://www.fmarie.net/ "Fmarie"))
 * German ([Caspar Hübinger](http://glueckpress.com "Caspar Hübinger"))
 * Hebrew ([Ariel](http://arielk.net "Ariel"))
 * Japanese ([BNG NET](http://staff.blog.bng.net/ "BNG NET"))
+* Polish (Soplica at artvision1.pl)
 * Romanian (Nobelcom)
 * Russian ([Serhij](http://darmoid.ru "Serhij"))
 * Spanish ([Alicia García Holgado](http://grial.usal.es/pfcgrial "Alicia García Holgado"))
+* Tagalog (Hanne at pointen.dk)
 
 == Installation ==
 
@@ -42,12 +47,55 @@ http://strategy11.com/display-widgets/
 
 This is a known limitation. Widgets written in the pre-2.8 format don't work the same way, and don't have the hooks. Sorry.
 
+= My widgets aren't showing when I activate =
+
+With some plugins and themes, you may need to adjust when the widget checking starts. You can add this to your theme functions.php or a new plugin.
+
+add_filter('dw_callback_trigger', 'dw_callback_trigger');
+function dw_callback_trigger(){
+    return 'wp_head'; //change to: plugins_loaded, after_setup_theme, wp_loaded, wp_head, or a hook of your choice
+}
 
 == Screenshots ==
 
 1. The extra widget options added.
 
 == Changelog ==
+= 2.03 =
+* Default to check for widgets on wp_loaded hook
+* Added dw_callback_trigger hook to change timing of first widget sidebar check
+* Fixed saving widget settings when widget is first added
+* Updated Polish translation
+
+= 2.02 =
+* Trigger widget checking later on page load
+
+= 2.01 =
+* Fixed for pre 3.8 compatibility
+* Fixed logged-in/logged-out default to Everyone for existing widgets
+* Fixed category checking for display
+* Correctly show settings after save
+* Only show public post types in the options
+
+= 2.0 =
+* Change the timing of checking widgets, so is_active_sidebar works correctly
+* Load the widget options when the widget is opened to speed up page load
+* Save options to a transient for 1 week
+* If is front page or home, also check to see if the individual page is checked
+* Switched logged in/out option to dropdown
+* Added support for custom post type archive pages (contribution from [tomoki](http://wordpress.org/support/profile/tomoki "tomoki") )
+* Removed 'include', 'login', and 'logout' fallbacks to further alleviate conflicts
+* Added Italian translation
+
+= 1.24 =
+* Fixed bug preventing boxes unchecking for some users
+
+= 1.23 =
+* Switched WPML language support from highest to lowest priority when determining whether to show or hide
+* Reduced database size of options saved
+* Changed 'login' to 'dw_login' parameter naming to remove conflicts with certain widgets
+* Added French, Tagalog, and Polish translations
+
 = 1.22 =
 * Added WPML support
 * Fix to allow more than 5 taxonomies

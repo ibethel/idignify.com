@@ -15,7 +15,8 @@
 class blcModule {
 	
 	var $module_id;      //The ID of this module. Usually a lowercase string.
-	var $cached_header;  //An associative array containing the header data of the module file. 
+	var $cached_header;  //An associative array containing the header data of the module file.
+	/** @var blcConfigurationManager $plugin__conf */
 	var $plugin_conf;    //A reference to the plugin's global configuration object.
 	var $module_manager; //A reference to the module manager.
 	
@@ -24,7 +25,7 @@ class blcModule {
 	 * 
 	 * @param string $module_id
 	 * @param array $cached_header
-	 * @param blcPluginConfiguration $plugin_conf
+	 * @param blcConfigurationManager $plugin_conf
 	 * @param blcModuleManager $module_manager
 	 * @return void
 	 */
@@ -57,7 +58,7 @@ class blcModule {
 	function activated(){
 		//Should be overridden in a sub-class.
 	}
-	
+
 	/**
 	 * Called when the module is deactivated.
 	 * Should be overridden in a sub-class.
@@ -67,6 +68,13 @@ class blcModule {
 	function deactivated(){
 		//Should be overridden in a sub-class.
 	}
+
+	/**
+	 * Called when BLC itself is activated.
+	 * Usually this method just calls activated(), but subclasses could override it for special handling.
+	 */
+	function plugin_activated() {
+		$this->activated();
+	}
 }
 
-?>

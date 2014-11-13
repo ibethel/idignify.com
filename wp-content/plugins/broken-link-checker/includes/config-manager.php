@@ -14,6 +14,11 @@ class blcConfigurationManager {
 	var $options;
 	var $defaults;
 	var $loaded_values;
+
+	/**
+	 * @var bool Whether options have been successfully loaded from the database.
+	 */
+	public $db_option_loaded = false;
 	
 	function blcConfigurationManager( $option_name = '', $default_settings = null ){
 		$this->option_name = $option_name;
@@ -27,8 +32,9 @@ class blcConfigurationManager {
 		
 		$this->options = $this->defaults;
 		
-		if ( !empty( $this->option_name ) )
-			$this->load_options();		
+		if ( !empty( $this->option_name ) ) {
+			$this->load_options();
+		}
 	}
 	
 	function set_defaults( $default_settings = null ){
@@ -49,6 +55,8 @@ class blcConfigurationManager {
    * @return bool True if options were loaded, false otherwise. 
    */
 	function load_options( $option_name = '' ){
+		$this->db_option_loaded = false;
+
 		if ( !empty($option_name) ){
 			$this->option_name = $option_name;
 		}
@@ -56,18 +64,25 @@ class blcConfigurationManager {
 		if ( empty($this->option_name) ) return false;
 		
 		$new_options = get_option($this->option_name);
+
+		//Decode JSON (if applicable).
+		if ( is_string($new_options) && !empty($new_options) ) {
+			$new_options = json_decode($new_options, true);
+		}
+
         if( !is_array( $new_options ) ){
             return false;
         } else {
         	$this->loaded_values = $new_options;
             $this->options = array_merge( $this->defaults, $this->loaded_values );
+			$this->db_option_loaded = true;
             return true;
         }
 	}
 	
   /**
    * blcOptionManager::save_options()
-   * Save plugin options to the databse. 
+   * Save plugin options to the database.
    *
    * @param string $option_name (Optional) Save the options under this name 
    * @return bool True if settings were saved, false if settings haven't been changed or if there was an error.
@@ -78,8 +93,8 @@ class blcConfigurationManager {
 		}
 		
 		if ( empty($this->option_name) ) return false;
-        
-		return update_option( $this->option_name, $this->options );		
+
+		return update_option( $this->option_name, json_encode($this->options) );
 	}
 	
 	/**
@@ -110,4 +125,3 @@ class blcConfigurationManager {
 }
 
 }
-?>

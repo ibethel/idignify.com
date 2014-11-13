@@ -1,51 +1,42 @@
-﻿=== Google Analytics for WordPress ===
-Contributors: joostdevalk
-Donate link: http://yoast.com/donate/
-Tags: analytics, google analytics, statistics, tracking, stats, google
-Requires at least: 2.8
-Tested up to: 3.3
-Stable tag: 4.2.4
+﻿=== Google Analytics by Yoast ===
+Contributors: joostdevalk,PvW_NL
+Donate link: https://yoast.com/donate/
+Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
+Requires at least: 3.8
+Tested up to: 4.0
+Stable tag: 5.1.1
 
-Track your WordPress site easily and with lots of metadata: views per author & category, automatic tracking of outbound clicks and pageviews.
+Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
 == Description ==
 
-The Google Analytics for WordPress plugin allows you to track your blog easily and with lots of metadata. 
+The Google Analytics by Yoast plugin for WordPress allows you to track your blog easily and always stays up to date with the newest features in Google Analytics.
 
-Check out the [Google Analytics for WordPress video](http://www.youtube.com/watch?v=tnUXzbvXxSQ):
-
-http://www.youtube.com/watch?v=tnUXzbvXxSQ&hd=1
+> <strong>Development on GitHub</strong><br>
+> The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, you have two options: either [buy the premium version of Google Analytics by Yoast on Yoast.com](https://yoast.com/wordpress/plugins/google-analytics/), this will give you access to our support team, or refer to the forums.
 
 Full list of features:
 
 * Simple installation through integration with Google Analytics API: authenticate, select the site you want to track and you're done.
-* This plugin uses the asynchronous Google Analytics tracking code, the fastest and most reliable tracking code Google Analytics offers.
-* Option to manually place the tracking code in another location.
-* Automatic Google Analytics site speed tracking.
+* This plugin uses the universal or the asynchronous Google Analytics tracking code, the fastest and most reliable tracking code Google Analytics offers.
+* Option to enable demographics and interest reports.
 * Outbound link & downloads tracking.
-	* Configurable options to track outbound links either as pageviews.
-	* Option to track just downloads as pageviews in Google Analytics.
-* Allows usage of custom variables in Google Analytics to track meta data on pages. Support for the following custom variables:
-	* Author
-	* Single category and / or multiple categories
-	* Post type (especially useful if you use custom post types)
-	* Logged in users
-	* Publication Year
-	* Tags
+	* Configurable options to track outbound links either as pageviews or as events.
+	* Option to track just downloads as pageviews or events in Google Analytics.
+	* Option to track internal links with a particular format as outbound links, very useful for affiliate links that start with /out/, for instance.
 * Possibility to ignore any user level and up, so all editors and higher for instance.
-* Easily connect your Google AdSense and Google Analytics accounts.
-* Option to tag links with Google Analytics campaign tracking, with the option to use hashes (#).
-* Option anonymize IP's, for use in countries like Germany.
+* Option to anonymize IP's for use in countries with stricter privacy regulations.
+* Tracking of your search result pages and 404 pages.
 * Full [debug mode](http://yoast.com/google-analytics-debug-mode/), including Firebug lite and ga_debug.js for debugging Google Analytics issues.
-* Allow local hosting of ga.js file.
-* Tracking of search engines not included in Google Analytics default tracking.
-* Tracking of login and registration forms.
+
+> <strong>Coming soon: dashboards!</strong><br>
+> We're working hard on the next iteration of the plugin which will contain a Dashboard within your WordPress admin with the most important stats from Google Analytics.
 
 Other interesting stuff:
 
-* Check out the other [WordPress Plugins](http://yoast.com/wordpress/) by the same author.
-* Want to increase traffic to your WordPress blog? Check out the [WordPress SEO](http://yoast.com/articles/wordpress-seo/) Guide!
-* Check out the authors [WordPress Hosting](http://yoast.com/articles/wordpress-hosting/) experience. Good hosting is hard to come by, but it doesn't have to be expensive, Joost tells you why!
+* Check out the other [WordPress Plugins](https://yoast.com/wordpress/plugins/) by the same team.
+* Want to increase traffic to your WordPress blog? Check out the [WordPress SEO](https://yoast.com/articles/wordpress-seo/) Guide!
+* Check out the authors [WordPress Hosting](https://yoast.com/articles/wordpress-hosting/) experience. Good hosting is hard to come by, but it doesn't have to be expensive, Joost tells you why!
 
 == Installation ==
 
@@ -57,6 +48,161 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.1.1 =
+
+Release Date: November 12th, 2014
+
+* Bugfixes:
+	* Fixes a conflict with Fancybox.
+	* Fixes a bug where links without the href attribute would cause the tracking code to be added wrongly.
+	* Fixes a multisite bug in Premium which was caused by the absence of a network admin menu.
+	* Fixes an issue with the version number.
+	* Fixes a bug where translations might be loaded several times.
+
+* Enhancements:
+	* Shows more relevant banners.
+	* Adds an image to the premium extension on the extensions page.
+	* Always show the custom dimension tab.
+	* Added translations for Finnish, Dutch and Russian.
+
+= 5.1 =
+
+Release Date: October 30th, 2014
+
+* Bugfixes:
+	* Fixes a possible JavaScript conflict within the tracking code.
+	* Makes sure translations are loaded correctly.
+
+* Enhancements:
+	* Improved UX for help texts in form.
+	* Added "Google Analytics by Yoast Premium" to the extensions page.
+	* Makes sure the user returns to the original settings tab after saving.
+	* Added a filter `wp_nav_menu` to enable tracking outbound links from the menu.
+	* Added a filter `wp_list_bookmarks` to enable tracking for blogroll widgets.
+
+= 5.0.7 =
+Release Date: October 14th, 2014
+
+* Bugfixes:
+	* Fixes a bug where 404 tracking would not work when using ga.js tracking.
+
+* Enhancements:
+	* Refactored several bits of code.
+
+= 5.0.6 =
+Release Date: September 17th, 2014
+
+* Bugfixes:
+	* Fixed several notices.
+	* Improved support for premium extensions to this plugin.
+	* Fixed bug where on multi-site or subdirectory installs, settings wouldn't save.
+	* Fix the tracking of downloads in ga.js tracking.
+	* Fixed a bug where custom code would be output after the send pageview instead of before.
+	* Fixed an empty delimiter warning.
+
+* Enhancements:
+	* Improved admin icon.
+	* Added a filter `wpga_menu_on_top` which, when returned false, moves the analytics menu down.
+	* Added filters `yoast-ga-push-array-ga-js` and `yoast-ga-push-array-universal` to filter the push arrays.
+
+= 5.0.5 =
+Release Date: September 4th, 2014
+
+* Bugfixes:
+	* Fixes error in link parsing that would cause all sorts of display errors.
+
+= 5.0.4 =
+Release Date: September 4th, 2014
+
+* Bugfixes:
+	* Fix small error in GA setup error link.
+	* Fix bug that would remove attributes from links.
+	* Added Try/Catch around connect to Google Analytics to prevent uncaught exceptions.
+	* Move require of function file to prevent error with already defined functions.
+	* Fix bug that sometimes prevented saving user roles to be ignored.
+	* Fix several notices.
+* Enhancements:
+	* Add links to Settings page and Knowledge Base on plugins page.
+	* No longer store result from Google API in the main option, saves memory on frontend.
+
+= 5.0.3 =
+Skipped due to error during release.
+
+= 5.0.2 =
+Release Date: September 4th, 2014
+
+* Bugfixes:
+	* Fixed bug with outbound link tracking not properly escaping attributes.
+	* Fixed bug that broke tracking with ga.js.
+
+= 5.0.1 =
+Release Date: September 4th, 2014
+
+* Bugfixes:
+	* Fixed string where array expected warning.
+
+= 5.0.0 =
+Release Date: September 4th, 2014
+
+Complete rewrite of the Google Analytics plugin.
+
+* Enhancements:
+	* Universal tracking added
+	* Better link tracking
+	* New Universal demographics feature
+	* New menu items in the WordPress admin menu
+
+= 4.3.5 =
+
+* Enhancement:
+	* Update banners in admin.
+
+= 4.3.4 =
+
+* Bugfix: 
+	* Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
+	* Fixed error in a database query.
+	* Made check for customcode option more robust - props [Rarst](https://github.com/Rarst).
+
+* i18n
+	* Updated gawp.pot file
+	* Added de_DE, el_GR, es_ES, fi, fr_FR, hu_HU & nl_NL
+
+= 4.3.3 =
+
+* Fix a possible fatal error in tracking.
+
+= 4.3.2 =
+
+* Bugfix: Google Analytics crappy API output is different when you have a single GA account versus multiple. Annoying, but fixed now.
+
+= 4.3.1 =
+
+* Removes a left over JS alert.
+
+= 4.3 =
+
+* Major refactor of plugin code, to only load necessary code on front and backend.
+* Made entire plugin i18n ready.
+* Fixed Google Authentication process (thanks to [Jan Willem Eshuis](http://www.janwillemeshuis.nl/)).
+
+= 4.2.8 =
+
+* Fix a small bug in tracking that could potentially slow down admin.
+
+= 4.2.7 =
+
+* Fix to prevent far too agressive oAuth implementation from breaking other plugins.
+
+= 4.2.6 =
+
+* Fix to prevent far too agressive oAuth implementation from breaking other plugins.
+
+= 4.2.5 =
+
+* Fixed a couple notices.
+* Added tracking to better understand configurations to test the plugin with.
 
 = 4.2.4 =
 
@@ -102,10 +248,10 @@ This section describes how to install the plugin and get it working.
 
 * Added:
 	* Google Site Speed tracking, turned it on by default.
-	
+
 * Fixed:
 	* Custom code now properly removes slashes.
-	
+
 = 4.0.12 =
 
 * Fixed:
@@ -115,18 +261,18 @@ This section describes how to install the plugin and get it working.
 	* Notice for unset variable.
 	* Error when user is not logged in in certain corner cases.
 	* Bug where $options was used but never loaded for blogroll links.
-	
+
 = 4.0.11 =
 
 * Bugs fixed:
 	* You can now disable comment form tracking properly.
 	* Removed charset property from script tags to allow validation with HTML5 doctype.
-	
+
 = 4.0.10 =
 
 * Known issues:
 	* Authentication with Google gives errors in quite a few cases. Please use the manual option to add your UA code until we find a way to reliably fix it.
-	
+
 * Added functionality:
 	* Option to set `_setAllowHash` to false, for proper subdomain tracking and some other uses.
 	* Option to add a custom string of code to the tracking, before the push string is sent out.
@@ -167,9 +313,9 @@ This section describes how to install the plugin and get it working.
 * Documentation fixes:
 	* Updated custom variable order in settings panel to reflect order of tracking. You can now determine their index key by counting down, first checked box is index 1, second 2, etc.
 	* Ignored users dropdown now correctly reflects that ignoring subcribers and up means ignoring ALL logged in users.
-	
+
 = 4.0.5 =
-* New features in this release: 
+* New features in this release:
 	* Added a simple check to see if the UA code, when entered manually, matches a basic pattern of UA-1234567-12.
 	* Added integration with [W3 Total Cache](http://wordpress.org/extend/plugins/w3-total-cache/) and [WP Super Cache](http://wordpress.org/extend/plugins/wp-super-cache/). The page cache is now automatically cleared after updating settings. Caching is recommended for all WordPress users, as faster page loads improve tracking reliability and W3 Total Cache is our recommended caching plugin.
 	* Added the option to enter a manual location for ga.js, allowing you to host it locally should you wish to.
@@ -185,7 +331,7 @@ This section describes how to install the plugin and get it working.
 * Fix for stupid boolean mistake in 4.0.3.
 
 = 4.0.3 =
-* New features in this release: 
+* New features in this release:
 	* Added versioning to the options array, to allow for easy addition of options.
 	* Added an option to enable comment form tracking (as this loads jQuery), defaults to on.
 * Bugs fixed:
@@ -194,7 +340,7 @@ This section describes how to install the plugin and get it working.
 
 = 4.0.2 =
 * Old settings from versions below 4.0 are now properly sanitized and inherited (slaps forehead about simplicity of fix).
-* New features in this release: 
+* New features in this release:
 	* Link sanitization added: relative links will be rewritten to absolute, so /out/ becomes http://example.com/out/ and is tracked properly.
 	* Added a feature to track and label internal links as outbound clicks, for instance /out/ links.
 	* Added tracking for mailto: links.
@@ -211,8 +357,8 @@ This section describes how to install the plugin and get it working.
 * Complete rewrite of the codebase
 * Switched to the new asynchronous event tracking model
 * Switched link tracking to an event tracking model, because of this change removed 5 settings from the settings panel that were no longer needed
-* Implemented custom variable tracking to track: 
-	* On the session level: whether the user is logged in or not. 
+* Implemented custom variable tracking to track:
+	* On the session level: whether the user is logged in or not.
 	* On the page level: the current posts's author, category, tags, year of publication and post type.
 * Added Google Analytics API integration, so you can easily select a site to track.
 * E-Commerce integration, tracking transactions, support for WP E-Commerce and Shopp.
@@ -271,15 +417,15 @@ This section describes how to install the plugin and get it working.
 * Prevent link tracking when admin is logged in and admin tracking is disabled.
 * Now prevents parsing of non http and https link.
 
-= 2.9 = 
+= 2.9 =
 * Re arranged admin panel to have "standard" and "advanced" settings.
 * Added domain tracking.
 * Added fix for double onclick parameter, as suggested [here](http://wordpress.org/support/topic/241757).
 
-= 2.8 = 
+= 2.8 =
 * Added the option to add setAllowAnchor to the tracking code, allowing you to track campaigns with # instead of ?.
 
-= 2.7 = 
+= 2.7 =
 * Added option to select either header of footer position.
 * Added new AdSense integration options.
 * Removed now unneeded adsense tracking script.
@@ -287,13 +433,13 @@ This section describes how to install the plugin and get it working.
 = 2.6.6=
 * Fixed settings link.
 
-= 2.6.5 = 
+= 2.6.5 =
 * added Ozh admin menu icon and settings link.
 
-= 2.6.4 = 
+= 2.6.4 =
 * Fixes for 2.7.
 
-= 2.6.3 = 
+= 2.6.3 =
 * Fixed bug that didn't allow saving of outbound clicks from comments string.
 
 = 2.6 =
@@ -303,13 +449,13 @@ This section describes how to install the plugin and get it working.
 * Fixed an issue with pluginpath being used globally.
 * Changed links to [new domain](http://yoast.com/).
 
-= 2.2 = 
+= 2.2 =
 * Switched to the new tracking code.
 
-= 2.1 = 
+= 2.1 =
 * Made sure tracking was disabled on preview pages.
 
-= 2.0 = 
+= 2.0 =
 * Added AdSense tracking.
 
 = 1.5 =
@@ -317,32 +463,10 @@ This section describes how to install the plugin and get it working.
 
 == Frequently Asked Questions ==
 
-= Can I run this plugin together with another Google Analytics plugin? =
-
-No. You can not. It will break tracking.
-
-= Another profile than the one I selected is showing as selected? =
-
-You probably have multiple profiles for the same website, that share the same UA-code. If so, it doesn't matter which of the profiles is shown as selected, tracking will be correct.
-
-= I've just installed the new tracking and Google Analytics says it's not receiving data yet? =
-
-Give it a couple of hours, usually it'll be fixed. It can take up to 24 hours to appear though.
-
-= Google Analytics says it's receiving data, but I don't see any stats yet? =
-
-This can take up to 24 hours after the installation of the new tracking code.
-
-= Why is the tracking code loaded in the head section of the site? =
-
-Because that's where it belongs. It makes the page load faster (yes, faster, due to the asynchronous method of loading the script) and tracking more reliable. If you must place it in the footer anyway, switch to manual mode and check out the docs for [manual placement of the Google Analytics code](http://yoast.com/wordpress/google-analytics/manual-placement/).
+For all frequently asked questions, and their answers, check the [Yoast Knowledge base](http://kb.yoast.com/category/43-google-analytics-for-wordpress).
 
 == Screenshots ==
 
-1. Screenshot of the basic settings panel for this plugin.
-2. Screenshot of the custom variable settings panel.
-3. Screenshot of the link tracking panel.
-4. Screenshot of the advanced settings panel.
-5. Screenshot of the debugging mode in action.
-
-== Upgrade Notice ==
+1. Screenshot of the general settings panel for this plugin.
+2. Screenshot of the universal settings panel.
+3. Screenshot of the advanced settings panel.
