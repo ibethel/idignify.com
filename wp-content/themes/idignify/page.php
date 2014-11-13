@@ -1,10 +1,23 @@
 <?php get_header(); ?>
 
-		<section id="page" class="span-20">
-
-			<?php get_template_part( 'loop', 'page' ); ?>
+<section id="page">
+	<div class="container">
+	<div class="row">
+		<div class="span8 offset2">
 			
-		</section><!-- #page -->
+		
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-<?php get_sidebar(); ?>
+		<h1><?php the_title(); ?></h1>
+		<?php the_content(); ?>
+
+	<?php endwhile; else : ?>
+		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+	<?php endif; ?>	
+
+	</div>
+	</div>
+</div>
+</section><!-- #page -->
+
 <?php get_footer(); ?>

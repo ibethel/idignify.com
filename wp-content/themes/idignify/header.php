@@ -84,11 +84,20 @@
 					<div class="nav-collapse collapse">
 						<nav>
 							<ul class="nav">
-								<li><a href="#home" class="home">Home</a></li>
-								<li><a href="#about" class="about">Who We Are</a></li>
-								<li><a href="#issue" class="issue">The Issue</a></li>
-								<li><a href="#giving" class="giving">Ways To Give</a></li>
-								<li><a href="#involved" class="involved">Get Involved</a></li>
+								<?php if(is_home()): ?>
+									<li><a href="#home" class="home">Home</a></li>
+									<li><a href="#about" class="about">Who We Are</a></li>
+									<li><a href="#issue" class="issue">The Issue</a></li>
+									<li><a href="#giving" class="giving">Ways To Give</a></li>
+									<li><a href="#involved" class="involved">Get Involved</a></li>
+								<?php else: ?>
+									<li><a href="<?php bloginfo('url' ); ?>" class="home">Home</a></li>
+									<li><a href="<?php bloginfo('url' ); ?>#about" class="about">Who We Are</a></li>
+									<li><a href="<?php bloginfo('url' ); ?>#issue" class="issue">The Issue</a></li>
+									<li><a href="<?php bloginfo('url' ); ?>#giving" class="giving">Ways To Give</a></li>
+									<li><a href="<?php bloginfo('url' ); ?>#involved" class="involved">Get Involved</a></li>
+								<?php endif; ?>
+								<?php wp_nav_menu( array( 'menu' => 'Primary Navigation', 'container' => false, 'menu_class' => 'nav nav-primary' )); ?>
 							</ul>
 						</nav>
 					</div><!--/.nav-collapse -->
